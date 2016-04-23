@@ -55,7 +55,7 @@ public class InputListener : MonoBehaviour
                 waitWithInput = true;
                 Invoke("ResetWaitWithInput", 0.3f);
             }
-            if (Input.GetButtonDown(player.getJoyPad().ToString() + "Cancel") && !waitWithInput)
+            if (Input.GetButtonDown(player.getJoyPad().ToString() + "Throw") && !waitWithInput)
             {
                 if (characterSelection)
                 {
