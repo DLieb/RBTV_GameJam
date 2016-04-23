@@ -17,7 +17,7 @@ public class PlayerController2D : MonoBehaviour
     private bool _restored = true;
     private bool _enableOneWayPlatforms;
     private bool _oneWayPlatformsAreWalls;
-	private Direction direction;
+	private Direction direction = Direction.right;
 	public Direction Direction { get { return direction; } }
 
 
@@ -51,7 +51,7 @@ public class PlayerController2D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		print (Input.GetAxis (currentPlayerPrefix + PC2D.Input.HORIZONTAL));
+		//print (Input.GetAxis (currentPlayerPrefix + PC2D.Input.HORIZONTAL));
 
 		if (Input.GetAxis (currentPlayerPrefix + PC2D.Input.HORIZONTAL) < -0.5) {
 			direction = Direction.left;
