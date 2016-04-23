@@ -3,6 +3,11 @@ using UnityEngine;
 /// <summary>
 /// This class is a simple example of how to build a controller that interacts with PlatformerMotor2D.
 /// </summary>
+
+public enum Direction {
+	left,
+	right
+}
 [RequireComponent(typeof(PlatformerMotor2D))]
 public class PlayerController2D : MonoBehaviour
 {
@@ -12,6 +17,8 @@ public class PlayerController2D : MonoBehaviour
     private bool _restored = true;
     private bool _enableOneWayPlatforms;
     private bool _oneWayPlatformsAreWalls;
+	private Direction direction;
+	public Direction Direction { get { return direction; } }
 
 
     // Use this for initialization
@@ -44,6 +51,14 @@ public class PlayerController2D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		print (Input.GetAxis (currentPlayerPrefix + PC2D.Input.HORIZONTAL));
+
+		if (Input.GetAxis (currentPlayerPrefix + PC2D.Input.HORIZONTAL) < -0.5) {
+			direction = Direction.left;
+		} else if (Input.GetAxis (currentPlayerPrefix + PC2D.Input.HORIZONTAL) > 0.5) {
+			direction = Direction.right;
+		}
+
         // use last state to restore some ladder specific values
         if (_motor.motorState != PlatformerMotor2D.MotorState.FreedomState)
         {
