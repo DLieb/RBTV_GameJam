@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/PC2D/Example/Platformer/Platformer.unity
+  isLoaded: 1
+  isActive: 1

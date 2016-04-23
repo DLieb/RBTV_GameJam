@@ -11,7 +11,6 @@ public enum Direction {
 [RequireComponent(typeof(PlatformerMotor2D))]
 public class PlayerController2D : MonoBehaviour
 {
-	public string currentPlayerPrefix =  "Joy1";
 
 	private PlatformerMotor2D _motor;
     private bool _restored = true;
@@ -19,12 +18,15 @@ public class PlayerController2D : MonoBehaviour
     private bool _oneWayPlatformsAreWalls;
 	private Direction direction = Direction.right;
 	public Direction Direction { get { return direction; } }
+    
+    private PlayerController player;
 
 
     // Use this for initialization
     void Start()
     {
         _motor = GetComponent<PlatformerMotor2D>();
+        player = transform.GetComponent<PlayerController>();
     }
 
     // before enter en freedom state for ladders
@@ -53,9 +55,9 @@ public class PlayerController2D : MonoBehaviour
     {
 		//print (Input.GetAxis (currentPlayerPrefix + PC2D.Input.HORIZONTAL));
 
-		if (Input.GetAxis (currentPlayerPrefix + PC2D.Input.HORIZONTAL) < -0.5) {
+		if (Input.GetAxis (player.currentPlayerPrefix + PC2D.Input.HORIZONTAL) < -0.5) {
 			direction = Direction.left;
-		} else if (Input.GetAxis (currentPlayerPrefix + PC2D.Input.HORIZONTAL) > 0.5) {
+		} else if (Input.GetAxis (player.currentPlayerPrefix + PC2D.Input.HORIZONTAL) > 0.5) {
 			direction = Direction.right;
 		}
 
@@ -68,36 +70,36 @@ public class PlayerController2D : MonoBehaviour
 
         // Jump?
         // If you want to jump in ladders, leave it here, otherwise move it down
-        if (Input.GetButtonDown(currentPlayerPrefix + PC2D.Input.JUMP))
+        if (Input.GetButtonDown(player.currentPlayerPrefix + PC2D.Input.JUMP))
         {
             _motor.Jump();
             _motor.DisableRestrictedArea();
         }
 
-		_motor.jumpingHeld = Input.GetButton(currentPlayerPrefix + PC2D.Input.JUMP);
+		_motor.jumpingHeld = Input.GetButton(player.currentPlayerPrefix + PC2D.Input.JUMP);
 
         // XY freedom movement
         if (_motor.motorState == PlatformerMotor2D.MotorState.FreedomState)
         {
-			_motor.normalizedXMovement = Input.GetAxis(currentPlayerPrefix + PC2D.Input.HORIZONTAL);
-			_motor.normalizedYMovement = Input.GetAxis(currentPlayerPrefix + PC2D.Input.VERTICAL);
+			_motor.normalizedXMovement = Input.GetAxis(player.currentPlayerPrefix + PC2D.Input.HORIZONTAL);
+			_motor.normalizedYMovement = Input.GetAxis(player.currentPlayerPrefix + PC2D.Input.VERTICAL);
 
             return; // do nothing more
         }
 
         // X axis movement
-		if (Mathf.Abs(Input.GetAxis(currentPlayerPrefix + PC2D.Input.HORIZONTAL)) > PC2D.Globals.INPUT_THRESHOLD)
+		if (Mathf.Abs(Input.GetAxis(player.currentPlayerPrefix + PC2D.Input.HORIZONTAL)) > PC2D.Globals.INPUT_THRESHOLD)
         {
-			_motor.normalizedXMovement = Input.GetAxis(currentPlayerPrefix + PC2D.Input.HORIZONTAL);
+			_motor.normalizedXMovement = Input.GetAxis(player.currentPlayerPrefix + PC2D.Input.HORIZONTAL);
         }
         else
         {
             _motor.normalizedXMovement = 0;
         }
 
-		if (Input.GetAxis(currentPlayerPrefix + PC2D.Input.VERTICAL) != 0)
+		if (Input.GetAxis(player.currentPlayerPrefix + PC2D.Input.VERTICAL) != 0)
         {
-			bool up_pressed = Input.GetAxis(currentPlayerPrefix + PC2D.Input.VERTICAL) > 0;
+			bool up_pressed = Input.GetAxis(player.currentPlayerPrefix + PC2D.Input.VERTICAL) > 0;
             if (_motor.IsOnLadder())
             {
                 if (
@@ -122,17 +124,17 @@ public class PlayerController2D : MonoBehaviour
                     _motor.oneWayPlatformsAreWalls = false;
 
                     // start XY movement
-					_motor.normalizedXMovement = Input.GetAxis(currentPlayerPrefix + PC2D.Input.HORIZONTAL);
-					_motor.normalizedYMovement = Input.GetAxis(currentPlayerPrefix + PC2D.Input.VERTICAL);
+					_motor.normalizedXMovement = Input.GetAxis(player.currentPlayerPrefix + PC2D.Input.HORIZONTAL);
+					_motor.normalizedYMovement = Input.GetAxis(player.currentPlayerPrefix + PC2D.Input.VERTICAL);
                 }
             }
         }
-		else if (Input.GetAxis(currentPlayerPrefix + PC2D.Input.VERTICAL) < -PC2D.Globals.FAST_FALL_THRESHOLD)
+		else if (Input.GetAxis(player.currentPlayerPrefix + PC2D.Input.VERTICAL) < -PC2D.Globals.FAST_FALL_THRESHOLD)
         {
             _motor.fallFast = false;
         }
 
-		if (Input.GetButtonDown(currentPlayerPrefix + PC2D.Input.DASH))
+		if (Input.GetButtonDown(player.currentPlayerPrefix + PC2D.Input.DASH))
         {
             _motor.Dash();
         }
