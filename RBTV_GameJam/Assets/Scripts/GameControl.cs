@@ -45,7 +45,7 @@ public class GameControl : MonoBehaviour {
                 if (x.getGameCharacter() != null)
                 {
                     GameObject Player = Instantiate(x.getGameCharacter(), Vector2.zero, Quaternion.identity) as GameObject;
-                    Player.GetComponent<PlayerController2D>().currentPlayerPrefix = x.getJoyPad().ToString();
+                    Player.GetComponent<PlayerController>().currentPlayerPrefix = x.getJoyPad().ToString();
                 }
             }
         }
