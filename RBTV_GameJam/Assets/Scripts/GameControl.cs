@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class GameControl : MonoBehaviour {
 
@@ -25,8 +26,29 @@ public class GameControl : MonoBehaviour {
     {
         this.playerList.Add(player);
     }
+
+    public void SetPlayerList(List<Player> x)
+    {
+        this.playerList = x;
+    }
     public List<Player> getPlayer()
     {
         return this.playerList;
+    }
+    void OnLevelWasLoaded(int level)
+    {
+        if(level==1)
+        {
+            Debug.Log("Loaded Level1");
+            foreach (Player x in playerList)
+            {
+                if (x.getGameCharacter() != null)
+                {
+                    GameObject Player = Instantiate(x.getGameCharacter(), Vector2.zero, Quaternion.identity) as GameObject;
+                    Player.GetComponent<PlayerController2D>().currentPlayerPrefix = x.getJoyPad().ToString();
+                }
+            }
+        }
+
     }
 }
