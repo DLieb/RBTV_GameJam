@@ -88,7 +88,14 @@
     <Compile Include="Assets\PC2D\Scripts\PlatformerAnimation2D.cs" />
     <Compile Include="Assets\PC2D\Scripts\PlatformerMotor2D.cs" />
     <Compile Include="Assets\PC2D\Scripts\PlayerController2D.cs" />
-    <Compile Include="Assets\Scripts\TestInput.cs" />
+    <Compile Include="Assets\PeanutThrowScript.cs" />
+    <Compile Include="Assets\Scripts\CharacterAvatar.cs" />
+    <Compile Include="Assets\Scripts\CharacterSelection.cs" />
+    <Compile Include="Assets\Scripts\GameControl.cs" />
+    <Compile Include="Assets\Scripts\InputEnum.cs" />
+    <Compile Include="Assets\Scripts\InputListener.cs" />
+    <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\PlayerEnum.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

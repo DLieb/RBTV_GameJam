@@ -1,27 +1,35 @@
 ﻿using UnityEngine;
 using System.Collections;
-
-public class Player : MonoBehaviour
+using System;
+[Serializable]
+public class Player
 {
 
     private PlayerEnum playerNumber;
     private GameObject chosenCharacter;
     private InputEnum controller;
+    private CharacterAvatar lockedAvatar;
 
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public Player()
+    {
+        playerNumber = PlayerEnum.Player1;
+        controller = InputEnum.Joy1;
+        chosenCharacter = null;
+    }
 
     public void setPlayer(PlayerEnum player)
     {
         this.playerNumber = player;
+    }
+
+    public CharacterAvatar GetLockedAvatar()
+    {
+        return this.lockedAvatar;
+    }
+
+    public void SetLockedAvatar(CharacterAvatar x)
+    {
+        this.lockedAvatar = x;
     }
     public PlayerEnum getPlayer()
     {
