@@ -8,9 +8,11 @@ public class PeanutThrowScript : MonoBehaviour {
     private PlayerController player;
 
     public float throwForce = 500;
+    public float nutSpawnDistanceX = 1.01f;
+    public float nutSpawnDistanceY = 0.2f;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		playerController = transform.GetComponent<PlayerController2D> ();
         player = transform.GetComponent<PlayerController>();
     }
@@ -23,7 +25,7 @@ public class PeanutThrowScript : MonoBehaviour {
 			Vector2 directionVector = (playerController.Direction.Equals (Direction.left) ? Vector2.left : Vector2.right);
             directionVector.y = 1;
 			GameObject throwPeanut = Instantiate (peanut, 
-                new Vector2(transform.position.x + directionVector.x * 1.01f, transform.position.y + 0.2f), transform.rotation) as GameObject;
+                new Vector2(transform.position.x + directionVector.x * nutSpawnDistanceX, transform.position.y + nutSpawnDistanceY), transform.rotation) as GameObject;
             //print(directionVector * throwForce);
 			throwPeanut.GetComponent<Rigidbody2D> ().AddForce(directionVector * throwForce);
             player.hasPeanut = false;
