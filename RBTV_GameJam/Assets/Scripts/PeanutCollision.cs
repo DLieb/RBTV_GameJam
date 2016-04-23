@@ -21,22 +21,22 @@ public class PeanutCollision : MonoBehaviour {
         {
             print("go");
         }
-        if (collision.gameObject.tag == "Peanut")
-        {
+        if (collision.gameObject.tag == "Peanut" )
+        {   
             if (!player.hasPeanut && !collision.gameObject.GetComponent<PeanutController>().wasThrown)
-            {
-                Debug.Log("collision wih peanut");
-                
+            {   
                 player.hasPeanut = true;
+                Destroy(collision.gameObject);
             }
             else if (collision.gameObject.GetComponent<PeanutController>().wasThrown)
             {
                 print("lost life");
                 player.reduceLife();
+                Destroy(collision.gameObject);
                 //add random location
                 GetComponent<PeanutSpawnScript>().spawnPeanutRandomLocation();
             }
-            Destroy(collision.gameObject);
+            
         }
         
     }
