@@ -15,8 +15,17 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+        if (Input.GetButtonDown(currentPlayerPrefix + PC2D.Input.THROW) && hasPeanut)
+        {
+            Vector2 directionVector = (GetComponent<PlayerController2D>().Direction.Equals(Direction.left) ? Vector2.left : Vector2.right);
+            directionVector.y = 1;
+            GetComponent<PeanutSpawnScript>().throwPeanut(transform.position.x + directionVector.x * GetComponent<PeanutSpawnScript>().nutSpawnDistanceX, transform.position.y + GetComponent<PeanutSpawnScript>().nutSpawnDistanceY, directionVector * GetComponent<PeanutSpawnScript>().throwForce);
+            //print(directionVector * throwForce);
+
+            hasPeanut = false;
+
+        }
+    }
 
     public void reduceLife()
     {
