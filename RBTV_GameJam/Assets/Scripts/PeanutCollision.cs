@@ -17,12 +17,27 @@ public class PeanutCollision : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        print("coll handler");
-        if (collision.gameObject.tag == "Peanut" && !player.hasPeanut)
+        if (collision == null)
         {
-            Debug.Log("collision wih peanut");
-            Destroy(collision.gameObject);
-            player.hasPeanut = true;
+            print("go");
         }
+        if (collision.gameObject.tag == "Peanut")
+        {
+            if (!player.hasPeanut && !collision.gameObject.GetComponent<PeanutController>().wasThrown)
+            {
+                Debug.Log("collision wih peanut");
+                
+                player.hasPeanut = true;
+            }
+            else if (collision.gameObject.GetComponent<PeanutController>().wasThrown)
+            {
+                print("lost life");
+                player.reduceLife();
+                //add random location
+                GetComponent<PeanutSpawnScript>().spawnPeanutRandomLocation();
+            }
+            Destroy(collision.gameObject);
+        }
+        
     }
 }
