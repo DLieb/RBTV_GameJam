@@ -15,10 +15,13 @@ public class PowerUPTransform : MonoBehaviour
     public float attackForce;
     private GameObject AttackObject;
     public float attackSpawnDistance=1.1f;
+    public AudioClip PowerSound;
+    public AudioSource speaker;
 
     void Start()
     {
         controller = GetComponentInParent<PlayerController>();
+        speaker = Camera.main.GetComponent<AudioSource>();
     }
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -30,6 +33,10 @@ public class PowerUPTransform : MonoBehaviour
             this.PowerChar = other.GetComponent<PowerUp>().GetPowerChar();
             this.timer = other.GetComponent<PowerUp>().GetPowerTime();
             ChangeChild();
+            if (PowerSound)
+            {
+                speaker.PlayOneShot(PowerSound);
+            }
             Destroy(other.gameObject);
         }
     }
