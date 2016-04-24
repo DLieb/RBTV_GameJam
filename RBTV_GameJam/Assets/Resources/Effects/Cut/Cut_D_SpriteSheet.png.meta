@@ -1,0 +1,268 @@
+fileFormatVersion: 2
+guid: 09047e07484046645aab186c42b4bfd5
+timeCreated: 1461482016
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Cut_D_SpriteSheet_0
+    21300002: Cut_D_SpriteSheet_1
+    21300004: Cut_D_SpriteSheet_2
+    21300006: Cut_D_SpriteSheet_3
+    21300008: Cut_D_SpriteSheet_4
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Cut_D_SpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 136, y: 104}
+        - {x: 67, y: 73}
+        - {x: 62, y: 69}
+        - {x: 62, y: -30}
+        - {x: 101, y: -69}
+        - {x: 115, y: -77}
+        - {x: 115, y: -72}
+        - {x: 132, y: -97}
+        - {x: 146, y: -104}
+        - {x: 173, y: -104}
+        - {x: 181, y: -82}
+        - {x: 181, y: 100}
+        - {x: 179, y: 104}
+    - name: Cut_D_SpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 142.1, y: -111}
+        - {x: 141.1, y: -113}
+        - {x: 141.1, y: -116}
+        - {x: 147.1, y: -121}
+        - {x: 156.1, y: -128}
+        - {x: 158.1, y: -128}
+        - {x: 160.1, y: -126}
+        - {x: 159.1, y: -122}
+        - {x: 149.1, y: -111}
+      - - {x: 104.100006, y: -80}
+        - {x: 102.100006, y: -82}
+        - {x: 102.100006, y: -84}
+        - {x: 114.100006, y: -99}
+        - {x: 117.100006, y: -100}
+        - {x: 121.100006, y: -100}
+        - {x: 121.100006, y: -93}
+        - {x: 111.100006, y: -80}
+      - - {x: 157.1, y: -72}
+        - {x: 147.1, y: -72}
+        - {x: 146.1, y: -73}
+        - {x: 146.1, y: -77}
+        - {x: 154.1, y: -82}
+        - {x: 159.1, y: -82}
+        - {x: 161.1, y: -80}
+        - {x: 161.1, y: -76}
+      - - {x: 163.1, y: -32}
+        - {x: 161.1, y: -36}
+        - {x: 162.1, y: -39}
+        - {x: 176.1, y: -39}
+        - {x: 178.1, y: -37}
+        - {x: 178.1, y: -36}
+        - {x: 174.1, y: -32}
+      - - {x: -129.9, y: -38}
+        - {x: 183.1, y: -38}
+        - {x: 183.1, y: 122}
+        - {x: 161.1, y: 159}
+        - {x: -24.899994, y: 159}
+        - {x: -129.9, y: 70}
+      - - {x: 119.100006, y: -26}
+        - {x: 119.100006, y: -35}
+        - {x: 132.1, y: -35}
+        - {x: 193.1, y: 3}
+        - {x: 193.1, y: 14}
+        - {x: 176.1, y: 14}
+        - {x: 166.1, y: 13}
+        - {x: 147.1, y: 7}
+      - - {x: 91.100006, y: 39}
+        - {x: 83.100006, y: 23}
+        - {x: 83.100006, y: -1}
+        - {x: 86.100006, y: -10}
+        - {x: 94.100006, y: -10}
+        - {x: 103.100006, y: 4}
+        - {x: 103.100006, y: 39}
+      - - {x: 70.100006, y: 67}
+        - {x: 68.100006, y: 65}
+        - {x: 68.100006, y: 30}
+        - {x: 70.100006, y: 28}
+        - {x: 73.100006, y: 28}
+        - {x: 75.100006, y: 30}
+        - {x: 75.100006, y: 65}
+        - {x: 73.100006, y: 67}
+    - name: Cut_D_SpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -62.799988, y: -116}
+        - {x: -68.79999, y: -116}
+        - {x: -69.79999, y: -118}
+        - {x: -69.79999, y: -121}
+        - {x: -54.799988, y: -127}
+        - {x: 8.200012, y: -150}
+        - {x: 11.200012, y: -149}
+        - {x: 11.200012, y: -144}
+        - {x: 3.2000122, y: -139}
+      - - {x: -127.79999, y: 99}
+        - {x: -175.79999, y: -7}
+        - {x: -175.79999, y: -129}
+        - {x: -67.79999, y: -129}
+        - {x: 2.2000122, y: -117}
+        - {x: 106.20001, y: -84}
+        - {x: 116.20001, y: 26}
+        - {x: 116.20001, y: 99}
+      - - {x: 172.20001, y: -32}
+        - {x: 170.20001, y: -34}
+        - {x: 170.20001, y: -36}
+        - {x: 172.20001, y: -38}
+        - {x: 177.20001, y: -38}
+        - {x: 179.20001, y: -36}
+        - {x: 179.20001, y: -34}
+        - {x: 177.20001, y: -32}
+      - - {x: 169.20001, y: 17}
+        - {x: 154.20001, y: -2}
+        - {x: 154.20001, y: -11}
+        - {x: 163.20001, y: -11}
+        - {x: 194.20001, y: 12}
+        - {x: 194.20001, y: 17}
+      - - {x: 92.20001, y: 44}
+        - {x: 88.20001, y: 36}
+        - {x: 88.20001, y: 24}
+        - {x: 92.20001, y: 22}
+        - {x: 95.20001, y: 21}
+        - {x: 101.20001, y: 21}
+        - {x: 105.20001, y: 25}
+        - {x: 105.20001, y: 38}
+        - {x: 103.20001, y: 44}
+    - name: Cut_D_SpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3.6999512, y: -139}
+        - {x: -3.6999512, y: -144}
+        - {x: -1.6999512, y: -147}
+        - {x: 9.300049, y: -147}
+        - {x: 10.300049, y: -145}
+        - {x: 10.300049, y: -142}
+        - {x: 7.300049, y: -139}
+      - - {x: -169.69995, y: -127}
+        - {x: -165.69995, y: -128}
+        - {x: -69.69995, y: -128}
+        - {x: -24.699951, y: -93}
+        - {x: -24.699951, y: -81}
+        - {x: -60.69995, y: -81}
+        - {x: -169.69995, y: -107}
+      - - {x: -12.699951, y: -112}
+        - {x: -13.699951, y: -114}
+        - {x: -13.699951, y: -117}
+        - {x: -11.699951, y: -118}
+        - {x: -1.6999512, y: -118}
+        - {x: -0.6999512, y: -116}
+        - {x: -0.6999512, y: -113}
+        - {x: -2.6999512, y: -112}
+      - - {x: -20.699951, y: -64}
+        - {x: -26.699951, y: -70}
+        - {x: -26.699951, y: -74}
+        - {x: -25.699951, y: -75}
+        - {x: -20.699951, y: -75}
+        - {x: -13.699951, y: -69}
+        - {x: -13.699951, y: -65}
+        - {x: -15.699951, y: -64}
+    - name: Cut_D_SpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -21.599976, y: -69}
+        - {x: -40.599976, y: -72}
+        - {x: -75.599976, y: -108}
+        - {x: -75.599976, y: -119}
+        - {x: -51.599976, y: -119}
+        - {x: -5.5999756, y: -83}
+        - {x: -5.5999756, y: -69}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

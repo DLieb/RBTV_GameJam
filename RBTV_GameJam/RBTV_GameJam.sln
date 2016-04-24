@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RBTV_GameJam.CSharp", "RBTV_GameJam.CSharp.csproj", "{213E4F88-E21C-2676-D035-CFE1944A045B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RBTV_GameJam.CSharp.Editor", "RBTV_GameJam.CSharp.Editor.csproj", "{9FC211CB-0094-9490-528E-468AD29CC685}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{213E4F88-E21C-2676-D035-CFE1944A045B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{213E4F88-E21C-2676-D035-CFE1944A045B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{213E4F88-E21C-2676-D035-CFE1944A045B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{213E4F88-E21C-2676-D035-CFE1944A045B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FC211CB-0094-9490-528E-468AD29CC685}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FC211CB-0094-9490-528E-468AD29CC685}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FC211CB-0094-9490-528E-468AD29CC685}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FC211CB-0094-9490-528E-468AD29CC685}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
