@@ -46,6 +46,6 @@ public class SpawnPowerUps : MonoBehaviour
 
     IEnumerator waitForNewPowerUp()
     {
-        
+        return null;
     }
 }
