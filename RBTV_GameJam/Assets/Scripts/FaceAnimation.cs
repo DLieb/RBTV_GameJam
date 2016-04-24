@@ -10,6 +10,8 @@ public class FaceAnimation : MonoBehaviour {
     private bool _isJumping;
     private bool _currentFacingLeft;
     public GameObject visualChild;
+    public PlayerController controller;
+    private bool throwDone =true;
 
     // Use this for initialization
     void Start()
@@ -18,6 +20,7 @@ public class FaceAnimation : MonoBehaviour {
         _faceAnimator.Play("HeadIdle");
         _bodyAnimator.Play("BodyIdle");
         _motor.onJump += SetCurrentFacingLeft;
+        controller = GetComponentInParent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -25,8 +28,8 @@ public class FaceAnimation : MonoBehaviour {
     {
         if (_motor.motorState == PlatformerMotor2D.MotorState.Jumping ||
             _isJumping &&
-                (_motor.motorState == PlatformerMotor2D.MotorState.Falling ||
-                             _motor.motorState == PlatformerMotor2D.MotorState.FallingFast))
+            (_motor.motorState == PlatformerMotor2D.MotorState.Falling ||
+             _motor.motorState == PlatformerMotor2D.MotorState.FallingFast))
         {
             _isJumping = true;
             _faceAnimator.Play("HeadJump");
@@ -47,20 +50,20 @@ public class FaceAnimation : MonoBehaviour {
             _isJumping = false;
 
             if (_motor.motorState == PlatformerMotor2D.MotorState.Falling ||
-                             _motor.motorState == PlatformerMotor2D.MotorState.FallingFast)
+                _motor.motorState == PlatformerMotor2D.MotorState.FallingFast)
             {
-                //_faceAnimator.Play("HeadDash");
+                _faceAnimator.Play("HeadFall");
                 _bodyAnimator.Play("BodyDash");
             }
             else if (_motor.motorState == PlatformerMotor2D.MotorState.WallSliding ||
                      _motor.motorState == PlatformerMotor2D.MotorState.WallSticking)
             {
-                _faceAnimator.Play("HeadIdle");
+                _faceAnimator.Play("HeadClimb");
                 _bodyAnimator.Play("BodyClimb");
             }
             else if (_motor.motorState == PlatformerMotor2D.MotorState.OnCorner)
             {
-                _faceAnimator.Play("HeadIdle");
+                _faceAnimator.Play("HeadClimb");
                 _bodyAnimator.Play("BodyClimb");
             }
             else if (_motor.motorState == PlatformerMotor2D.MotorState.Slipping)
@@ -73,9 +76,16 @@ public class FaceAnimation : MonoBehaviour {
                 _faceAnimator.Play("HeadRun");
                 _bodyAnimator.Play("BodyDash");
             }
-            else
+            else if (Input.GetButtonDown(controller.currentPlayerPrefix + PC2D.Input.THROW))
             {
-                if (_motor.velocity.sqrMagnitude >= 0.1f * 0.1f)
+                _bodyAnimator.Play("BodyAttack");
+                _faceAnimator.Play("HeadThrow");
+                throwDone = false;
+                Invoke("ResetThrow",0.2f);
+            }
+            else if(throwDone)
+            {
+                if (_motor.velocity.sqrMagnitude >= 0.1f*0.1f)
                 {
                     _bodyAnimator.Play("BodyRun");
                     _faceAnimator.Play("HeadRun");
@@ -110,6 +120,11 @@ public class FaceAnimation : MonoBehaviour {
     private void SetCurrentFacingLeft()
     {
         _currentFacingLeft = _motor.facingLeft;
+    }
+
+    private void ResetThrow()
+    {
+        throwDone = true;
     }
 }
 
