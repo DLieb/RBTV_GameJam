@@ -27,6 +27,24 @@ public class PeanutSpawnScript : MonoBehaviour {
     public void spawnPeanutRandomLocation()
     {
         //get random x, get random y
-        spawnPeanut(1, 1);
+        Random rnd = new Random();
+        bool spawnPointFound = false;
+        int spawnX = 1;
+        int spawnY = 1;
+        while (!spawnPointFound)
+        {
+            spawnX = Random.Range(-18, 18);
+            spawnY = Random.Range(-9, 9);
+            Collider2D temp = Physics2D.OverlapPoint(new Vector2(spawnX, spawnY));
+            if (temp == null)
+            {
+                spawnPointFound = true;
+            } else
+            {
+                Debug.Log("peanut spawning failed");
+            }
+        }
+
+        spawnPeanut(spawnX, spawnY);
     }
 }
