@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameControl : MonoBehaviour {
 
     private List<Player> playerList = new List<Player>();
-
+    public int currentPlayers=0;
     //Singelton
     public static GameControl instance;
     public void Awake()
@@ -54,6 +54,7 @@ public class GameControl : MonoBehaviour {
                 {
                     GameObject Player = Instantiate(x.getGameCharacter(), Vector2.zero, Quaternion.identity) as GameObject;
                     Player.GetComponent<PlayerController>().currentPlayerPrefix = x.getJoyPad().ToString();
+                    currentPlayers ++;
                 }
             }
         }

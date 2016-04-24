@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
@@ -40,7 +41,12 @@ public class PlayerController : MonoBehaviour {
         lifes = lifes - 1;
         if (lifes == 0)
         {
-            Destroy(gameObject);
+            GameControl.instance.currentPlayers -= 1;
+            if (GameControl.instance.currentPlayers == 1)
+            {
+                SceneManager.LoadScene(2);
+            }
+            Destroy(gameObject);  
         }
         StartCoroutine(LetPlayerBlink());
     }

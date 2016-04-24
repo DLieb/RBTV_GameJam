@@ -58,17 +58,12 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AnyKey.cs" />
     <Compile Include="Assets\PC2D\Example\CameraFollow.cs" />
     <Compile Include="Assets\PC2D\Example\DifferentSpeeds\DifferentSpeeds.cs" />
     <Compile Include="Assets\PC2D\Example\LadderBody.cs" />
@@ -99,6 +94,7 @@
     <Compile Include="Assets\Scripts\GameControl.cs" />
     <Compile Include="Assets\Scripts\InitialPeanutSpawnScript.cs" />
     <Compile Include="Assets\Scripts\OuterWallCollision.cs" />
+    <Compile Include="Assets\Scripts\OuterWallHorizontal.cs" />
     <Compile Include="Assets\Scripts\PeanutController.cs" />
     <Compile Include="Assets\Scripts\PeanutSpawnScript.cs" />
     <Compile Include="Assets\Scripts\PlayerCollision.cs" />
