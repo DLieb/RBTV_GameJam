@@ -41,11 +41,8 @@ public class PlayerController : MonoBehaviour {
         lifes = lifes - 1;
         if (lifes == 0)
         {
-            GameControl.instance.currentPlayers -= 1;
-            if (GameControl.instance.currentPlayers == 1)
-            {
-                SceneManager.LoadScene(2);
-            }
+            Debug.Log("Destroyed Player");
+            GameControl.instance.reducePlayerCount();
             Destroy(gameObject);  
         }
         StartCoroutine(LetPlayerBlink());
