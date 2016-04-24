@@ -248,7 +248,7 @@ public class CharacterSelection : MonoBehaviour
         }
         else
         {
-            Debug.Log("You need at least 2 Players");
+            Debug.Log("You need at least 2 Players you got "+ CurrentPlayers.Count);
         }
     }
 
