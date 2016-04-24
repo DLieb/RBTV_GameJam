@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PeanutCollision : MonoBehaviour {
+public class PlayerCollision : MonoBehaviour {
 
     private PlayerController player;
 
@@ -10,11 +10,6 @@ public class PeanutCollision : MonoBehaviour {
         player = transform.GetComponent<PlayerController>();
     }
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Peanut" )
@@ -24,7 +19,7 @@ public class PeanutCollision : MonoBehaviour {
                 player.hasPeanut = true;
                 Destroy(collision.gameObject);
             }
-            else if (collision.gameObject.GetComponent<PeanutController>().wasThrown && ! player.ImmortalityGranted)
+            else if (collision.gameObject.GetComponent<PeanutController>().wasThrown && !player.ImmortalityGranted)
             {
                 print("lost life");
                 player.reduceLife();
