@@ -187,7 +187,7 @@ public class CharacterSelection : MonoBehaviour
                             characterAvatars[p2Iterator].GetComponent<SpriteRenderer>().color = b;
                             removeAvatar(characterAvatars[p2Iterator]);
                             CurrentPlayers[i].setLockedStatus(true);
-                            UpdateSamePlayerSelections(p1Iterator, PlayerEnum.Player2);
+                            UpdateSamePlayerSelections(p2Iterator, PlayerEnum.Player2);
                             player2Locked = true;
                         }
                         break;
@@ -201,7 +201,7 @@ public class CharacterSelection : MonoBehaviour
                             characterAvatars[p3Iterator].GetComponent<SpriteRenderer>().color = b;
                             removeAvatar(characterAvatars[p3Iterator]);
                             CurrentPlayers[i].setLockedStatus(true);
-                            UpdateSamePlayerSelections(p1Iterator, PlayerEnum.Player3);
+                            UpdateSamePlayerSelections(p3Iterator, PlayerEnum.Player3);
                             player3Locked = true;
                         }
                         break;
@@ -216,7 +216,7 @@ public class CharacterSelection : MonoBehaviour
                             characterAvatars[p4Iterator].GetComponent<SpriteRenderer>().color = b;
                             removeAvatar(characterAvatars[p4Iterator]);
                             CurrentPlayers[i].setLockedStatus(true);
-                            UpdateSamePlayerSelections(p1Iterator, PlayerEnum.Player4);
+                            UpdateSamePlayerSelections(p4Iterator, PlayerEnum.Player4);
                             player4Locked = true;
                         }
                         break;
@@ -370,11 +370,11 @@ public class CharacterSelection : MonoBehaviour
                 {
                     changeAvatarSelection(CurrentPlayers[1], 0);
                 }
-                if (p3Iterator == currentIterator)
+                if (CurrentPlayers.Count() > 2 && p3Iterator == currentIterator)
                 {
                     changeAvatarSelection(CurrentPlayers[2], 0);
                 }
-                if (p4Iterator == currentIterator)
+                if (CurrentPlayers.Count() > 3 && p4Iterator == currentIterator)
                 {
                     changeAvatarSelection(CurrentPlayers[3], 0);
                 }
@@ -384,11 +384,11 @@ public class CharacterSelection : MonoBehaviour
                 {
                     changeAvatarSelection(CurrentPlayers[0], 0);
                 }
-                if (p3Iterator == currentIterator)
+                if (CurrentPlayers.Count() > 2 && p3Iterator == currentIterator)
                 {
                     changeAvatarSelection(CurrentPlayers[2], 0);
                 }
-                if (p4Iterator == currentIterator)
+                if (CurrentPlayers.Count() > 3 && p4Iterator == currentIterator)
                 {
                     changeAvatarSelection(CurrentPlayers[3], 0);
                 }
@@ -402,7 +402,7 @@ public class CharacterSelection : MonoBehaviour
                 {
                     changeAvatarSelection(CurrentPlayers[1], 0);
                 }
-                if (p4Iterator == currentIterator)
+                if (CurrentPlayers.Count() > 3 && p4Iterator == currentIterator)
                 {
                     changeAvatarSelection(CurrentPlayers[3], 0);
                 }
@@ -416,7 +416,7 @@ public class CharacterSelection : MonoBehaviour
                 {
                     changeAvatarSelection(CurrentPlayers[1], 0);
                 }
-                if (p3Iterator == currentIterator)
+                if (CurrentPlayers.Count() > 2 && p3Iterator == currentIterator)
                 {
                     changeAvatarSelection(CurrentPlayers[2], 0);
                 }
