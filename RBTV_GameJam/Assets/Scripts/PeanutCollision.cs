@@ -17,10 +17,6 @@ public class PeanutCollision : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision == null)
-        {
-            print("go");
-        }
         if (collision.gameObject.tag == "Peanut" )
         {   
             if (!player.hasPeanut && !collision.gameObject.GetComponent<PeanutController>().wasThrown)
@@ -28,7 +24,7 @@ public class PeanutCollision : MonoBehaviour {
                 player.hasPeanut = true;
                 Destroy(collision.gameObject);
             }
-            else if (collision.gameObject.GetComponent<PeanutController>().wasThrown)
+            else if (collision.gameObject.GetComponent<PeanutController>().wasThrown && ! player.ImmortalityGranted)
             {
                 print("lost life");
                 player.reduceLife();

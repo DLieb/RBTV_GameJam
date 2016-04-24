@@ -3,11 +3,19 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
+    public GameObject visual;
+
     public bool hasPeanut = false;
     public string currentPlayerPrefix = "Joy1";
 
-    private int lifes = 3;
-    public int Lifes { get { return lifes; } }
+    private bool immortalityGranted = false;
+    public bool ImmortalityGranted { get { return immortalityGranted; } }
+
+    public int lifes = 3;
+
+    public float immortalityTime = 2f;
+
+    public float throwAngle = 0.5f;
 
     // Use this for initialization
     void Start () {
@@ -18,7 +26,7 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetButtonDown(currentPlayerPrefix + PC2D.Input.THROW) && hasPeanut)
         {
             Vector2 directionVector = (GetComponent<PlayerController2D>().Direction.Equals(Direction.left) ? Vector2.left : Vector2.right);
-            directionVector.y = 1;
+            directionVector.y = throwAngle;
             GetComponent<PeanutSpawnScript>().throwPeanut(transform.position.x + directionVector.x * GetComponent<PeanutSpawnScript>().nutSpawnDistanceX, transform.position.y + GetComponent<PeanutSpawnScript>().nutSpawnDistanceY, directionVector * GetComponent<PeanutSpawnScript>().throwForce);
             //print(directionVector * throwForce);
 
@@ -26,9 +34,25 @@ public class PlayerController : MonoBehaviour {
 
         }
     }
-
+    
     public void reduceLife()
     {
         lifes = lifes - 1;
+        if (lifes == 0)
+        {
+            Destroy(gameObject);
+        }
+        StartCoroutine(LetPlayerBlink());
+    }
+
+    IEnumerator LetPlayerBlink()
+    {
+        for (float f = immortalityTime; f >= 0; f -= 0.1f)
+        {
+            immortalityGranted = true;
+            visual.gameObject.SetActive(!visual.gameObject.activeSelf);
+            yield return new WaitForSeconds(.1f);
+        }
+        immortalityGranted = false;
     }
 }
