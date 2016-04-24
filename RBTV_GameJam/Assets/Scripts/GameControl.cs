@@ -48,11 +48,13 @@ public class GameControl : MonoBehaviour {
         if(level==1)
         {
             Debug.Log("Loaded Level1");
+            int i = -2;
             foreach (Player x in playerList)
             {
                 if (x.getGameCharacter() != null)
                 {
-                    GameObject Player = Instantiate(x.getGameCharacter(), Vector2.zero, Quaternion.identity) as GameObject;
+                    i += 2;
+                    GameObject Player = Instantiate(x.getGameCharacter(), new Vector2(i,0), Quaternion.identity) as GameObject;
                     Player.GetComponent<PlayerController>().currentPlayerPrefix = x.getJoyPad().ToString();
                     currentPlayers ++;
                 }
