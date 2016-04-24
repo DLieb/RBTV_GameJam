@@ -77,24 +77,28 @@ public class CharacterSelection : MonoBehaviour
                 temp.setPlayer(PlayerEnum.Player1);
                 tempFrame = Instantiate(P1Select, characterAvatars[p1Iterator].transform.position,
                     Quaternion.identity)as GameObject;
+                tempFrame.transform.localScale = characterAvatars[p1Iterator].transform.localScale;
                 temp.SetSelectFrame(tempFrame);
                 break;
             case 1:
                 temp.setPlayer(PlayerEnum.Player2);
                 tempFrame = Instantiate(P2Select, characterAvatars[p2Iterator].transform.position,
                     Quaternion.identity) as GameObject;
+                tempFrame.transform.localScale = characterAvatars[p2Iterator].transform.localScale;
                 temp.SetSelectFrame(tempFrame);
                 break;
             case 2:
                 temp.setPlayer(PlayerEnum.Player3);
                 tempFrame = Instantiate(P3Select, characterAvatars[p3Iterator].transform.position,
                     Quaternion.identity) as GameObject;
+                tempFrame.transform.localScale = characterAvatars[p3Iterator].transform.localScale;
                 temp.SetSelectFrame(tempFrame);
                 break;
             case 3:
                 temp.setPlayer(PlayerEnum.Player4);
                 tempFrame = Instantiate(P4Select, characterAvatars[p4Iterator].transform.position,
                     Quaternion.identity) as GameObject;
+                tempFrame.transform.localScale = characterAvatars[p4Iterator].transform.localScale;
                 temp.SetSelectFrame(tempFrame);
                 break;
         }
@@ -160,39 +164,42 @@ public class CharacterSelection : MonoBehaviour
                     case PlayerEnum.Player1:
                         if (!player1Locked)
                         {
-                            temp = new Vector2(-8, 4);
-                            characterAvatars[p1Iterator].transform.position = temp;
-                            CurrentPlayers[i].GetFrame().transform.position = temp;
                             CurrentPlayers[i].setGameCharacter(characterAvatars[p1Iterator].getCharacterPrefab());
                             CurrentPlayers[i].SetLockedAvatar(characterAvatars[p1Iterator]);
-                            removeAvatar(characterAvatars[p1Iterator]);
                             CurrentPlayers[i].setLockedStatus(true);
+                            Color b = characterAvatars[p1Iterator].GetComponent<SpriteRenderer>().color;
+                            b.a = 0.4f;
+                            characterAvatars[p1Iterator].GetComponent<SpriteRenderer>().color = b;
+                            removeAvatar(characterAvatars[p1Iterator]);
+                            
                             player1Locked = true;
                         }
                         break;
                     case PlayerEnum.Player2:
                         if (!player2Locked)
                         {
-                            temp = new Vector2(8, 4);
-                            characterAvatars[p2Iterator].transform.position = temp;
-                            CurrentPlayers[i].GetFrame().transform.position = temp;
                             CurrentPlayers[i].setGameCharacter(characterAvatars[p2Iterator].getCharacterPrefab());
                             CurrentPlayers[i].SetLockedAvatar(characterAvatars[p2Iterator]);
+                            Color b = characterAvatars[p2Iterator].GetComponent<SpriteRenderer>().color;
+                            b.a = 0.4f;
+                            characterAvatars[p2Iterator].GetComponent<SpriteRenderer>().color = b;
                             removeAvatar(characterAvatars[p2Iterator]);
                             CurrentPlayers[i].setLockedStatus(true);
+
                             player2Locked = true;
                         }
                         break;
                     case PlayerEnum.Player3:
                         if (!player3Locked)
                         {
-                            temp = new Vector2(-8, -4);
-                            characterAvatars[p3Iterator].transform.position = temp;
-                            CurrentPlayers[i].GetFrame().transform.position = temp;
                             CurrentPlayers[i].setGameCharacter(characterAvatars[p3Iterator].getCharacterPrefab());
                             CurrentPlayers[i].SetLockedAvatar(characterAvatars[p3Iterator]);
+                            Color b = characterAvatars[p3Iterator].GetComponent<SpriteRenderer>().color;
+                            b.a = 0.4f;
+                            characterAvatars[p3Iterator].GetComponent<SpriteRenderer>().color = b;
                             removeAvatar(characterAvatars[p3Iterator]);
                             CurrentPlayers[i].setLockedStatus(true);
+
                             player3Locked = true;
                         }
                         break;
@@ -205,8 +212,12 @@ public class CharacterSelection : MonoBehaviour
                             CurrentPlayers[i].GetFrame().transform.position = temp;
                             CurrentPlayers[i].setGameCharacter(characterAvatars[p4Iterator].getCharacterPrefab());
                             CurrentPlayers[i].SetLockedAvatar(characterAvatars[p4Iterator]);
+                            Color b = characterAvatars[p4Iterator].GetComponent<SpriteRenderer>().color;
+                            b.a = 0.4f;
+                            characterAvatars[p4Iterator].GetComponent<SpriteRenderer>().color = b;
                             removeAvatar(characterAvatars[p4Iterator]);
                             CurrentPlayers[i].setLockedStatus(true);
+
                             player4Locked = true;
                         }
                         break;
@@ -292,6 +303,9 @@ public class CharacterSelection : MonoBehaviour
                             CurrentPlayers[i].GetFrame().transform.position = x.GetInitialPosition();
                             CurrentPlayers[i].setLockedStatus(false);
                             reAddAvatar(x);
+                            Color temp = x.GetComponent<SpriteRenderer>().color;
+                            temp.a = 1f;
+                            x.GetComponent<SpriteRenderer>().color = temp;
                             player1Locked = false;
                         }
                         break;
@@ -303,6 +317,10 @@ public class CharacterSelection : MonoBehaviour
                             CurrentPlayers[i].GetFrame().transform.position = x.GetInitialPosition();
                             CurrentPlayers[i].setLockedStatus(false);
                             reAddAvatar(x);
+
+                            Color temp = x.GetComponent<SpriteRenderer>().color;
+                            temp.a = 1f;
+                            x.GetComponent<SpriteRenderer>().color = temp;
                             player2Locked = false;
                         }
                         break;
@@ -314,6 +332,10 @@ public class CharacterSelection : MonoBehaviour
                             CurrentPlayers[i].GetFrame().transform.position = x.GetInitialPosition();
                             CurrentPlayers[i].setLockedStatus(false);
                             reAddAvatar(x);
+
+                            Color temp = x.GetComponent<SpriteRenderer>().color;
+                            temp.a = 1f;
+                            x.GetComponent<SpriteRenderer>().color = temp;
                             player3Locked = false;
                         }
                         break;
@@ -325,6 +347,10 @@ public class CharacterSelection : MonoBehaviour
                             CurrentPlayers[i].GetFrame().transform.position = x.GetInitialPosition();
                             CurrentPlayers[i].setLockedStatus(false);
                             reAddAvatar(x);
+
+                            Color temp = x.GetComponent<SpriteRenderer>().color;
+                            temp.a = 1f;
+                            x.GetComponent<SpriteRenderer>().color = temp;
                             player4Locked = false;
                         }
                         break;

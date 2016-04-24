@@ -32,7 +32,6 @@ public class PlayerController : MonoBehaviour {
             //print(directionVector * throwForce);
 
             hasPeanut = false;
-
         }
     }
     

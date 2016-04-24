@@ -21,7 +21,7 @@ public class PlayerCollision : MonoBehaviour {
             }
             else if (collision.gameObject.GetComponent<PeanutController>().wasThrown && !player.ImmortalityGranted)
             {
-                print("lost life");
+                //print("lost life");
                 player.reduceLife();
                 Destroy(collision.gameObject);
                 //add random location
