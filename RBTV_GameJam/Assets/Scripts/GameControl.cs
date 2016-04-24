@@ -22,6 +22,14 @@ public class GameControl : MonoBehaviour {
         }
     }
 
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+    }
+
     public void AddPlayer(Player player)
     {
         this.playerList.Add(player);
