@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour {
     public float immortalityTime = 2f;
 
     public float throwAngle = 0.5f;
+    public bool hasPowerUp = false;
 
     // Use this for initialization
     void Start () {
@@ -23,7 +24,7 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetButtonDown(currentPlayerPrefix + PC2D.Input.THROW) && hasPeanut)
+        if (Input.GetButtonDown(currentPlayerPrefix + PC2D.Input.THROW) && hasPeanut && !hasPowerUp )
         {
             Vector2 directionVector = (GetComponent<PlayerController2D>().Direction.Equals(Direction.left) ? Vector2.left : Vector2.right);
             directionVector.y = throwAngle;
@@ -47,12 +48,16 @@ public class PlayerController : MonoBehaviour {
 
     IEnumerator LetPlayerBlink()
     {
-        for (float f = immortalityTime; f >= 0; f -= 0.1f)
+        if (!hasPowerUp)
         {
-            immortalityGranted = true;
-            visual.gameObject.SetActive(!visual.gameObject.activeSelf);
-            yield return new WaitForSeconds(.1f);
+            for (float f = immortalityTime; f >= 0; f -= 0.1f)
+            {
+                immortalityGranted = true;
+                visual.gameObject.SetActive(!visual.gameObject.activeSelf);
+                yield return new WaitForSeconds(.1f);
+            }
+            immortalityGranted = false;
         }
-        immortalityGranted = false;
+
     }
 }
