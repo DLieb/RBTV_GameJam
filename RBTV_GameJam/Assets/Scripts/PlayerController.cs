@@ -34,6 +34,11 @@ public class PlayerController : MonoBehaviour {
 
             hasPeanut = false;
         }
+	    if (this.transform.position.y > 13 || this.transform.position.y < -20 || this.transform.position.x < -20 ||
+	        this.transform.position.x > 20)
+	    {
+	        transform.position = new Vector2(0, 0);
+	    }
     }
     
     public void reduceLife()

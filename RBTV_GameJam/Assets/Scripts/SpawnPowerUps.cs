@@ -24,8 +24,8 @@ public class SpawnPowerUps : MonoBehaviour
         int spawnY = 1;
         while (!spawnPointFound)
         {
-            spawnX = Random.Range(-18, 18);
-            spawnY = Random.Range(-9, 9);
+            spawnX = Random.Range(-16, 16);
+            spawnY = Random.Range(-8, 8);
             Collider2D temp = Physics2D.OverlapPoint(new Vector2(spawnX, spawnY));
             if (temp == null)
             {
