@@ -43,6 +43,12 @@ public class GameControl : MonoBehaviour {
     {
         return this.playerList;
     }
+
+    public void reducePlayerCount()
+    {
+        currentPlayers -= 1;
+        Debug.Log("Current Players " + currentPlayers);
+    }
     void OnLevelWasLoaded(int level)
     {
         if(level==1)
@@ -57,6 +63,7 @@ public class GameControl : MonoBehaviour {
                     GameObject Player = Instantiate(x.getGameCharacter(), new Vector2(i,0), Quaternion.identity) as GameObject;
                     Player.GetComponent<PlayerController>().currentPlayerPrefix = x.getJoyPad().ToString();
                     currentPlayers ++;
+                    Debug.Log("Current Players " + currentPlayers);
                 }
             }
         }

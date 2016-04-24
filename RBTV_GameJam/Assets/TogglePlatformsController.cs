@@ -21,13 +21,13 @@ public class TogglePlatformsController : MonoBehaviour {
 
     IEnumerator toggleWindows()
     {
-        print(gameObjects.Length);
+        //print(gameObjects.Length);
         int randomWindowIndex = Random.Range(0, gameObjects.Length);
-        print("random window has index " + randomWindowIndex);
+        //print("random window has index " + randomWindowIndex);
         float random = Random.Range(toggleTimeMin, toggleTimeMax);
 
         for (float i = 0; i < random; i+=random) {
-            print("enable/disable sth " + !gameObjects[randomWindowIndex].activeSelf);
+            //print("enable/disable sth " + !gameObjects[randomWindowIndex].activeSelf);
             gameObjects[randomWindowIndex].SetActive(!gameObjects[randomWindowIndex].activeSelf);
 
             yield return new WaitForSeconds(random);
