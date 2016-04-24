@@ -171,7 +171,9 @@ public class CharacterSelection : MonoBehaviour
                             b.a = 0.4f;
                             characterAvatars[p1Iterator].GetComponent<SpriteRenderer>().color = b;
                             removeAvatar(characterAvatars[p1Iterator]);
-                            
+
+                            UpdateSamePlayerSelections(p1Iterator, PlayerEnum.Player1);
+
                             player1Locked = true;
                         }
                         break;
@@ -185,7 +187,7 @@ public class CharacterSelection : MonoBehaviour
                             characterAvatars[p2Iterator].GetComponent<SpriteRenderer>().color = b;
                             removeAvatar(characterAvatars[p2Iterator]);
                             CurrentPlayers[i].setLockedStatus(true);
-
+                            UpdateSamePlayerSelections(p1Iterator, PlayerEnum.Player2);
                             player2Locked = true;
                         }
                         break;
@@ -199,7 +201,7 @@ public class CharacterSelection : MonoBehaviour
                             characterAvatars[p3Iterator].GetComponent<SpriteRenderer>().color = b;
                             removeAvatar(characterAvatars[p3Iterator]);
                             CurrentPlayers[i].setLockedStatus(true);
-
+                            UpdateSamePlayerSelections(p1Iterator, PlayerEnum.Player3);
                             player3Locked = true;
                         }
                         break;
@@ -214,7 +216,7 @@ public class CharacterSelection : MonoBehaviour
                             characterAvatars[p4Iterator].GetComponent<SpriteRenderer>().color = b;
                             removeAvatar(characterAvatars[p4Iterator]);
                             CurrentPlayers[i].setLockedStatus(true);
-
+                            UpdateSamePlayerSelections(p1Iterator, PlayerEnum.Player4);
                             player4Locked = true;
                         }
                         break;
@@ -354,6 +356,75 @@ public class CharacterSelection : MonoBehaviour
                 }
             }
         }
+    }
+
+    void UpdateSamePlayerSelections(int currentIterator, PlayerEnum player)
+    {
+        //suche welche auf diesem (ausser meiner) --- iteratorX = mein iterator
+        //list.first == iterator
+        //evtl changeAvatarSelection
+        switch(player)
+        {
+            case PlayerEnum.Player1:
+                if (p2Iterator == currentIterator)
+                {
+                    changeAvatarSelection(CurrentPlayers[1], 0);
+                }
+                if (p3Iterator == currentIterator)
+                {
+                    changeAvatarSelection(CurrentPlayers[2], 0);
+                }
+                if (p4Iterator == currentIterator)
+                {
+                    changeAvatarSelection(CurrentPlayers[3], 0);
+                }
+                break;
+            case PlayerEnum.Player2:
+                if (p1Iterator == currentIterator)
+                {
+                    changeAvatarSelection(CurrentPlayers[0], 0);
+                }
+                if (p3Iterator == currentIterator)
+                {
+                    changeAvatarSelection(CurrentPlayers[2], 0);
+                }
+                if (p4Iterator == currentIterator)
+                {
+                    changeAvatarSelection(CurrentPlayers[3], 0);
+                }
+                break;
+            case PlayerEnum.Player3:
+                if (p1Iterator == currentIterator)
+                {
+                    changeAvatarSelection(CurrentPlayers[0], 0);
+                }
+                if (p2Iterator == currentIterator)
+                {
+                    changeAvatarSelection(CurrentPlayers[1], 0);
+                }
+                if (p4Iterator == currentIterator)
+                {
+                    changeAvatarSelection(CurrentPlayers[3], 0);
+                }
+                break;
+            case PlayerEnum.Player4:
+                if (p1Iterator == currentIterator)
+                {
+                    changeAvatarSelection(CurrentPlayers[0], 0);
+                }
+                if (p2Iterator == currentIterator)
+                {
+                    changeAvatarSelection(CurrentPlayers[1], 0);
+                }
+                if (p3Iterator == currentIterator)
+                {
+                    changeAvatarSelection(CurrentPlayers[2], 0);
+                }
+                break;
+        }
+
+
+
     }
 
     /*void InstantiatePlayerBeacon(PlayerEnum player)
