@@ -10,6 +10,7 @@ public class Player
     private InputEnum controller;
     private CharacterAvatar lockedAvatar;
     private GameObject selectFrame;
+    private bool locked;
 
     public Player()
     {
@@ -64,5 +65,15 @@ public class Player
     public void SetSelectFrame(GameObject x)
     {
         selectFrame = x;
+    }
+
+    public bool getLockedStatus()
+    {
+        return this.locked;
+    }
+
+    public void setLockedStatus(bool x)
+    {
+        this.locked = x;
     }
 }

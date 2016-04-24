@@ -160,36 +160,39 @@ public class CharacterSelection : MonoBehaviour
                     case PlayerEnum.Player1:
                         if (!player1Locked)
                         {
-                            temp = new Vector2(-8, 5);
+                            temp = new Vector2(-8, 4);
                             characterAvatars[p1Iterator].transform.position = temp;
                             CurrentPlayers[i].GetFrame().transform.position = temp;
                             CurrentPlayers[i].setGameCharacter(characterAvatars[p1Iterator].getCharacterPrefab());
                             CurrentPlayers[i].SetLockedAvatar(characterAvatars[p1Iterator]);
                             removeAvatar(characterAvatars[p1Iterator]);
+                            CurrentPlayers[i].setLockedStatus(true);
                             player1Locked = true;
                         }
                         break;
                     case PlayerEnum.Player2:
                         if (!player2Locked)
                         {
-                            temp = new Vector2(8, 5);
+                            temp = new Vector2(8, 4);
                             characterAvatars[p2Iterator].transform.position = temp;
                             CurrentPlayers[i].GetFrame().transform.position = temp;
                             CurrentPlayers[i].setGameCharacter(characterAvatars[p2Iterator].getCharacterPrefab());
                             CurrentPlayers[i].SetLockedAvatar(characterAvatars[p2Iterator]);
                             removeAvatar(characterAvatars[p2Iterator]);
+                            CurrentPlayers[i].setLockedStatus(true);
                             player2Locked = true;
                         }
                         break;
                     case PlayerEnum.Player3:
                         if (!player3Locked)
                         {
-                            temp = new Vector2(-8, -5);
+                            temp = new Vector2(-8, -4);
                             characterAvatars[p3Iterator].transform.position = temp;
                             CurrentPlayers[i].GetFrame().transform.position = temp;
                             CurrentPlayers[i].setGameCharacter(characterAvatars[p3Iterator].getCharacterPrefab());
                             CurrentPlayers[i].SetLockedAvatar(characterAvatars[p3Iterator]);
                             removeAvatar(characterAvatars[p3Iterator]);
+                            CurrentPlayers[i].setLockedStatus(true);
                             player3Locked = true;
                         }
                         break;
@@ -197,17 +200,19 @@ public class CharacterSelection : MonoBehaviour
                     case PlayerEnum.Player4:
                         if (!player4Locked)
                         {
-                            temp = new Vector2(8, -5);
+                            temp = new Vector2(8, -4);
                             characterAvatars[p4Iterator].transform.position = temp;
                             CurrentPlayers[i].GetFrame().transform.position = temp;
                             CurrentPlayers[i].setGameCharacter(characterAvatars[p4Iterator].getCharacterPrefab());
                             CurrentPlayers[i].SetLockedAvatar(characterAvatars[p4Iterator]);
                             removeAvatar(characterAvatars[p4Iterator]);
+                            CurrentPlayers[i].setLockedStatus(true);
                             player4Locked = true;
                         }
                         break;
                 }
                 //Debug.Log(player.ToString() + "locked" + characterAvatars[p1Iterator].name);
+                
             }
         }
     }
@@ -233,9 +238,9 @@ public class CharacterSelection : MonoBehaviour
     public void StartGame()
     {
         readyToStart = true;
-        for (var i = 0; i < CurrentPlayers.Count - 1; i++)
+        for (var i = 0; i < CurrentPlayers.Count ; i++)
         {
-            if (CurrentPlayers[i].getGameCharacter() == null)
+            if (CurrentPlayers[i].getLockedStatus()==false)
             {
                 Debug.Log(CurrentPlayers[i].getPlayer() + " hasn't chosen an Avatar yet");
                 readyToStart = false;
@@ -285,6 +290,7 @@ public class CharacterSelection : MonoBehaviour
                             CharacterAvatar x = CurrentPlayers[i].GetLockedAvatar();
                             x.transform.position = x.GetInitialPosition();
                             CurrentPlayers[i].GetFrame().transform.position = x.GetInitialPosition();
+                            CurrentPlayers[i].setLockedStatus(false);
                             reAddAvatar(x);
                             player1Locked = false;
                         }
@@ -295,6 +301,7 @@ public class CharacterSelection : MonoBehaviour
                             CharacterAvatar x = CurrentPlayers[i].GetLockedAvatar();
                             x.transform.position = x.GetInitialPosition();
                             CurrentPlayers[i].GetFrame().transform.position = x.GetInitialPosition();
+                            CurrentPlayers[i].setLockedStatus(false);
                             reAddAvatar(x);
                             player2Locked = false;
                         }
@@ -305,6 +312,7 @@ public class CharacterSelection : MonoBehaviour
                             CharacterAvatar x = CurrentPlayers[i].GetLockedAvatar();
                             x.transform.position = x.GetInitialPosition();
                             CurrentPlayers[i].GetFrame().transform.position = x.GetInitialPosition();
+                            CurrentPlayers[i].setLockedStatus(false);
                             reAddAvatar(x);
                             player3Locked = false;
                         }
@@ -315,6 +323,7 @@ public class CharacterSelection : MonoBehaviour
                             CharacterAvatar x = CurrentPlayers[i].GetLockedAvatar();
                             x.transform.position = x.GetInitialPosition();
                             CurrentPlayers[i].GetFrame().transform.position = x.GetInitialPosition();
+                            CurrentPlayers[i].setLockedStatus(false);
                             reAddAvatar(x);
                             player4Locked = false;
                         }

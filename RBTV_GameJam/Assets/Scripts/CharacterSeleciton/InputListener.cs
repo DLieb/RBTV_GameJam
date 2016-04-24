@@ -26,7 +26,7 @@ public class InputListener : MonoBehaviour
                     characterSelection.changeAvatarSelection(player, -1);
                 }
                 waitWithInput = true;
-                Invoke("ResetWaitWithInput", 0.3f);
+                Invoke("ResetWaitWithInput", 0.2f);
             }
             if (Input.GetAxis(player.getJoyPad().ToString()+"Horizontal") > 0.9 && !waitWithInput)
             {
@@ -35,7 +35,7 @@ public class InputListener : MonoBehaviour
                     characterSelection.changeAvatarSelection(player, 1);
                 }
                 waitWithInput = true;
-                Invoke("ResetWaitWithInput", 0.3f);
+                Invoke("ResetWaitWithInput", 0.2f);
             }
             if (Input.GetButtonDown(player.getJoyPad().ToString() + "Jump") && !waitWithInput)
             {
@@ -44,7 +44,7 @@ public class InputListener : MonoBehaviour
                     characterSelection.LockAvatar(player.getPlayer());
                 }
                 waitWithInput = true;
-                Invoke("ResetWaitWithInput", 0.3f);
+                Invoke("ResetWaitWithInput", 0.2f);
             }
             if (Input.GetButtonDown(player.getJoyPad().ToString() + "Dash") && !waitWithInput)
             {
@@ -53,7 +53,7 @@ public class InputListener : MonoBehaviour
                     characterSelection.StartGame();
                 }
                 waitWithInput = true;
-                Invoke("ResetWaitWithInput", 0.3f);
+                Invoke("ResetWaitWithInput", 0.2f);
             }
             if (Input.GetButtonDown(player.getJoyPad().ToString() + "Throw") && !waitWithInput)
             {
@@ -62,7 +62,7 @@ public class InputListener : MonoBehaviour
                     characterSelection.UnLockAvatar(player.getPlayer());
                 }
                 waitWithInput = true;
-                Invoke("ResetWaitWithInput", 0.3f);
+                Invoke("ResetWaitWithInput", 0.2f);
             }
         }
 	}
