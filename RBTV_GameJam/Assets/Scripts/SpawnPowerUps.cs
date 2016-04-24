@@ -42,10 +42,13 @@ public class SpawnPowerUps : MonoBehaviour
     void spawnPowerUp(Vector2 position, GameObject prefab)
     {
         Instantiate(prefab, position, Quaternion.identity);
+        StartCoroutine(waitForNewPowerUp());
     }
 
     IEnumerator waitForNewPowerUp()
     {
-        return null;
+        float temp = Random.Range(minSpawnTime,maxSpawntime);
+        yield return new WaitForSeconds(temp);
+        spawnPowerUpRandomLocation();
     }
 }
