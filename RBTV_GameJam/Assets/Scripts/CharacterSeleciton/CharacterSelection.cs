@@ -254,7 +254,7 @@ public class CharacterSelection : MonoBehaviour
                 readyToStart = false;
             }
         }
-        if (CurrentPlayers.Count >= 2 && readyToStart)
+        if (CurrentPlayers.Count >= 1 && readyToStart)
         {
             GameControl.instance.SetPlayerList(CurrentPlayers);
             SceneManager.LoadScene(1);

@@ -10,18 +10,22 @@ public class PeanutSpawnScript : MonoBehaviour {
     public float nutSpawnDistanceY = 0.2f;
     
 
-    public void throwPeanut(float x, float y, Vector2 force)
+    public void throwPeanut(float x, float y, Vector2 force, GameObject prefab)
     {
-        GameObject throwPeanut = spawnPeanut(x, y);
+        if (prefab == null)
+        {
+            prefab = peanut;
+        }
+        GameObject throwPeanut = spawnPeanut(x, y, prefab);
 
         throwPeanut.GetComponent<Rigidbody2D>().AddForce(force);
         throwPeanut.GetComponent<PeanutController>().wasThrown = true;
 
     }
 
-    private GameObject spawnPeanut(float x, float y)
+    private GameObject spawnPeanut(float x, float y, GameObject prefab)
     {
-        return Instantiate(peanut, new Vector2(x,y), transform.rotation) as GameObject;
+        return Instantiate(prefab, new Vector2(x,y), transform.rotation) as GameObject;
     }
 
     public void spawnPeanutRandomLocation()
@@ -45,6 +49,6 @@ public class PeanutSpawnScript : MonoBehaviour {
             }
         }
 
-        spawnPeanut(spawnX, spawnY);
+        spawnPeanut(spawnX, spawnY, peanut);
     }
 }

@@ -55,16 +55,8 @@ public class PowerUPTransform : MonoBehaviour
     void ThrowLaser()
     {
         Vector2 directionVector = (GetComponent<PlayerController2D>().Direction.Equals(Direction.left) ? Vector2.left : Vector2.right);
-        Vector2 x;
-        x.x = transform.position.x * attackSpawnDistance;
-        x.y = transform.position.y;
-        GameObject temp = Instantiate(AttackObject,x,Quaternion.identity)as GameObject;
-        Rigidbody2D tempbody = temp.GetComponent<Rigidbody2D>();
-        temp.GetComponent<PeanutController>().wasThrown = true;
-        if (tempbody)
-        {
-            tempbody.AddForce(directionVector*attackForce);
-        }
+        
+        GetComponent<PeanutSpawnScript>().throwPeanut(transform.position.x + directionVector.x * GetComponent<PeanutSpawnScript>().nutSpawnDistanceX, transform.position.y + GetComponent<PeanutSpawnScript>().nutSpawnDistanceY, directionVector * GetComponent<PeanutSpawnScript>().throwForce, AttackObject);
     }
 
     void Update()
