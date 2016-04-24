@@ -207,9 +207,6 @@ public class CharacterSelection : MonoBehaviour
                     case PlayerEnum.Player4:
                         if (!player4Locked)
                         {
-                            temp = new Vector2(8, -4);
-                            characterAvatars[p4Iterator].transform.position = temp;
-                            CurrentPlayers[i].GetFrame().transform.position = temp;
                             CurrentPlayers[i].setGameCharacter(characterAvatars[p4Iterator].getCharacterPrefab());
                             CurrentPlayers[i].SetLockedAvatar(characterAvatars[p4Iterator]);
                             Color b = characterAvatars[p4Iterator].GetComponent<SpriteRenderer>().color;
