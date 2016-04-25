@@ -6,6 +6,8 @@
 -r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll"
 -r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll"
 -r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll"
+-r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll"
+-r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Common.dll"
 -define:UNITY_5_3_OR_NEWER
 -define:UNITY_5_3_4
 -define:UNITY_5_3
@@ -117,6 +119,7 @@ Assets/Scripts/PowerUp/CheckForGameEnd.cs
 Assets/Scripts/PowerUp/DestroyAttackItem.cs
 Assets/Scripts/PowerUp/PowerUPTransform.cs
 Assets/Scripts/PowerUp/PowerUp.cs
+Assets/Scripts/SpawnPowerUps.cs
 Assets/TogglePlatformsController.cs
 -r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\unity\System.Runtime.Serialization.dll"
 -r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\unity\System.Xml.Linq.dll"

@@ -44,14 +44,26 @@ public class CharacterSelection : MonoBehaviour
     {
         if (Input.GetButtonDown("Joy1StartButton") && !player1Set)
         {
+            print("joy 1 down");
             SetPlayer(InputEnum.Joy1);
             player1Set = true;
+        }else if (Input.GetButtonDown("Key1StartButton") && !player1Set)
+        {
+            print("enter  down");
+            SetPlayer(InputEnum.Key1);
+            player1Set = true;
         }
+        
         if (Input.GetButtonDown("Joy2StartButton") && !player2Set)
         {
             SetPlayer(InputEnum.Joy2);
             player2Set = true;
+        } else if(Input.GetButtonDown("Key2StartButton") && !player2Set)
+        {
+            SetPlayer(InputEnum.Key2);
+            player2Set = true;
         }
+
         if (Input.GetButtonDown("Joy3StartButton") && !player3Set)
         {
             SetPlayer(InputEnum.Joy3);
@@ -66,6 +78,7 @@ public class CharacterSelection : MonoBehaviour
 
     private void SetPlayer(InputEnum input)
     {
+        print("set input : " + input);
         var temp = new Player();
         temp.setController(input);
         //temp.setGameCharacter(CharacterPrefab);
@@ -105,7 +118,6 @@ public class CharacterSelection : MonoBehaviour
         listener.setPlayer(temp);
         CurrentPlayers.Add(temp);
         Debug.Log("Added Player " + temp.getPlayer());
-        //GameControl.instance.AddPlayer(temp);
     }
 
     public void changeAvatarSelection(Player player, int iteration)
@@ -180,11 +192,12 @@ public class CharacterSelection : MonoBehaviour
                         {
                             CurrentPlayers[i].setGameCharacter(characterAvatars[p2Iterator].getCharacterPrefab());
                             CurrentPlayers[i].SetLockedAvatar(characterAvatars[p2Iterator]);
+                            CurrentPlayers[i].setLockedStatus(true);
                             Color b = characterAvatars[p2Iterator].GetComponent<SpriteRenderer>().color;
                             b.a = 0.4f;
                             characterAvatars[p2Iterator].GetComponent<SpriteRenderer>().color = b;
                             removeAvatar(characterAvatars[p2Iterator]);
-                            CurrentPlayers[i].setLockedStatus(true);
+                            
 
                             player2Locked = true;
                         }
@@ -194,11 +207,11 @@ public class CharacterSelection : MonoBehaviour
                         {
                             CurrentPlayers[i].setGameCharacter(characterAvatars[p3Iterator].getCharacterPrefab());
                             CurrentPlayers[i].SetLockedAvatar(characterAvatars[p3Iterator]);
+                            CurrentPlayers[i].setLockedStatus(true);
                             Color b = characterAvatars[p3Iterator].GetComponent<SpriteRenderer>().color;
                             b.a = 0.4f;
                             characterAvatars[p3Iterator].GetComponent<SpriteRenderer>().color = b;
                             removeAvatar(characterAvatars[p3Iterator]);
-                            CurrentPlayers[i].setLockedStatus(true);
 
                             player3Locked = true;
                         }
@@ -209,11 +222,11 @@ public class CharacterSelection : MonoBehaviour
                         {
                             CurrentPlayers[i].setGameCharacter(characterAvatars[p4Iterator].getCharacterPrefab());
                             CurrentPlayers[i].SetLockedAvatar(characterAvatars[p4Iterator]);
+                            CurrentPlayers[i].setLockedStatus(true);
                             Color b = characterAvatars[p4Iterator].GetComponent<SpriteRenderer>().color;
                             b.a = 0.4f;
                             characterAvatars[p4Iterator].GetComponent<SpriteRenderer>().color = b;
                             removeAvatar(characterAvatars[p4Iterator]);
-                            CurrentPlayers[i].setLockedStatus(true);
 
                             player4Locked = true;
                         }

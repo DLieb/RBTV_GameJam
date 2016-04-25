@@ -1,11 +1,25 @@
 -debug
 -target:library
 -nowarn:0169
--out:Temp/Assembly-CSharp.dll
+-out:Temp/Assembly-CSharp-Editor.dll
 -r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll"
--r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll"
--r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll"
 -r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll"
+-r:Library/ScriptAssemblies/Assembly-CSharp.dll
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/EditorTestsRunner/Editor/nunit.framework.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/EditorTestsRunner/Editor/UnityEditor.EditorTestsRunner.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/Editor/UnityEditor.UI.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/Editor/UnityEditor.Networking.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll"
+-r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll"
+-r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll"
+-r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll"
+-r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll"
+-r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll"
+-r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll"
+-r:"C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/2015/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll"
 -r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll"
 -r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Common.dll"
 -define:UNITY_5_3_OR_NEWER
@@ -79,45 +93,6 @@
 -define:UNITY_EDITOR
 -define:UNITY_EDITOR_64
 -define:UNITY_EDITOR_WIN
-Assets/AnyKey.cs
-Assets/PC2D/Example/CameraFollow.cs
-Assets/PC2D/Example/DifferentSpeeds/DifferentSpeeds.cs
-Assets/PC2D/Example/LadderBody.cs
-Assets/PC2D/Example/LadderZone.cs
-Assets/PC2D/Example/MotorMonitor.cs
-"Assets/PC2D/Example/Moving Platforms/SimpleBoost.cs"
-"Assets/PC2D/Example/Moving Platforms/SimpleCollapsable.cs"
-"Assets/PC2D/Example/Moving Platforms/SimpleLeftRight.cs"
-"Assets/PC2D/Example/Moving Platforms/SimpleUpDown.cs"
-Assets/PC2D/Example/RestrictedArea.cs
-"Assets/PC2D/Example/Simple AI/SimpleAI.cs"
-Assets/PC2D/Example/SpriteDebug.cs
-Assets/PC2D/Example/Triggers/MessageOnCollision.cs
-Assets/PC2D/Scripts/EasingFunctions.cs
-Assets/PC2D/Scripts/Globals.cs
-Assets/PC2D/Scripts/MovingPlatformMotor2D.cs
-Assets/PC2D/Scripts/PlatformerAnimation2D.cs
-Assets/PC2D/Scripts/PlatformerMotor2D.cs
-Assets/PC2D/Scripts/PlayerController2D.cs
-Assets/Scripts/CharacterSeleciton/CharacterAvatar.cs
-Assets/Scripts/CharacterSeleciton/CharacterSelection.cs
-Assets/Scripts/CharacterSeleciton/InputListener.cs
-Assets/Scripts/CharacterSeleciton/Player.cs
-Assets/Scripts/Enums/InputEnum.cs
-Assets/Scripts/Enums/PlayerEnum.cs
-Assets/Scripts/EventManager.cs
-Assets/Scripts/FaceAnimation.cs
-Assets/Scripts/GameControl.cs
-Assets/Scripts/InitialPeanutSpawnScript.cs
-Assets/Scripts/OuterWallCollision.cs
-Assets/Scripts/OuterWallHorizontal.cs
-Assets/Scripts/PeanutController.cs
-Assets/Scripts/PeanutSpawnScript.cs
-Assets/Scripts/PlayerCollision.cs
-Assets/Scripts/PlayerController.cs
-Assets/Scripts/PowerUp/DestroyAttackItem.cs
-Assets/Scripts/PowerUp/PowerUPTransform.cs
-Assets/Scripts/PowerUp/PowerUp.cs
-Assets/TogglePlatformsController.cs
--r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\unity\System.Runtime.Serialization.dll"
--r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\unity\System.Xml.Linq.dll"
+Assets/PC2D/Editor/PlatformerMotor2DEditor.cs
+-r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\2.0\System.Runtime.Serialization.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\2.0\System.Xml.Linq.dll"
