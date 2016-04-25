@@ -23,24 +23,20 @@ public class PowerUPTransform : MonoBehaviour
         controller = GetComponentInParent<PlayerController>();
         speaker = Camera.main.GetComponent<AudioSource>();
     }
-    void OnTriggerEnter2D(Collider2D other)
+
+
+    public void transformPower(GameObject Attack,GameObject Char, float timer)
     {
-        if (other.tag == "PowerUp")
+        AttackObject = Attack;
+        this.PowerChar = Char;
+        this.timer = timer;
+        tempSmoke = Instantiate(smokeEffect, transform.position, Quaternion.identity) as GameObject;
+        ChangeChild();
+        if (PowerSound)
         {
-            Debug.Log("Instantiate");
-            AttackObject = other.GetComponent<PowerUp>().GetAttack();
-            tempSmoke = Instantiate(smokeEffect, transform.position, Quaternion.identity) as GameObject;
-            this.PowerChar = other.GetComponent<PowerUp>().GetPowerChar();
-            this.timer = other.GetComponent<PowerUp>().GetPowerTime();
-            ChangeChild();
-            if (PowerSound)
-            {
-                speaker.PlayOneShot(PowerSound);
-            }
-            Destroy(other.gameObject);
+            speaker.PlayOneShot(PowerSound);
         }
     }
-
     void ChangeChild()
     {
         controller.hasPowerUp = true;
