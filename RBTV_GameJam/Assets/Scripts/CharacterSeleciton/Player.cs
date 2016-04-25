@@ -14,8 +14,12 @@ public class Player
 
     public Player()
     {
-        playerNumber = PlayerEnum.Player1;
-        controller = InputEnum.Joy1;
+
+    }
+    public Player(PlayerEnum player, InputEnum ctrl)
+    {
+        playerNumber = player;
+        controller = ctrl;
         chosenCharacter = null;
     }
 

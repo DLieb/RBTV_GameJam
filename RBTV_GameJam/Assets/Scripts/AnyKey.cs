@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Collections.Generic;
 
 public class AnyKey : MonoBehaviour {
 
@@ -9,6 +10,8 @@ public class AnyKey : MonoBehaviour {
 
         if (Input.anyKey)
         {
+            GameControl.instance.SetPlayerList(new List<Player>());
+            GameControl.instance.currentPlayers = 0;
             SceneManager.LoadScene(0);
         }
 	}
