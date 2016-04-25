@@ -46,7 +46,6 @@ public class PlayerController : MonoBehaviour {
         lifes = lifes - 1;
         if (lifes == 0)
         {
-            Debug.Log("Destroyed Player");
             GameControl.instance.reducePlayerCount();
             Destroy(gameObject);  
         }

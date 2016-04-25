@@ -16,13 +16,11 @@ public class InputListener : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        print("player " + player.getPlayer() + " " + player.getJoyPad());
 	    if (player != null)
 	    {
             if ((Input.GetAxis(player.getJoyPad().ToString()+"Horizontal") < -0.9  
                 || (player.getJoyPad() == InputEnum.Key1 && Input.GetKey(KeyCode.LeftArrow)) || (player.getJoyPad() == InputEnum.Key2 && Input.GetKey(KeyCode.A))) && !waitWithInput)
             {
-                print("inside left arrow");
                 if (characterSelection)
                 {
                     characterSelection.changeAvatarSelection(player, -1);

@@ -44,12 +44,10 @@ public class CharacterSelection : MonoBehaviour
     {
         if (Input.GetButtonDown("Joy1StartButton") && !player1Set)
         {
-            print("joy 1 down");
             SetPlayer(InputEnum.Joy1);
             player1Set = true;
         }else if (Input.GetButtonDown("Key1StartButton") && !player1Set)
         {
-            print("enter  down");
             SetPlayer(InputEnum.Key1);
             player1Set = true;
         }
@@ -78,7 +76,6 @@ public class CharacterSelection : MonoBehaviour
 
     private void SetPlayer(InputEnum input)
     {
-        print("set input : " + input);
         var temp = new Player();
         temp.setController(input);
         //temp.setGameCharacter(CharacterPrefab);
