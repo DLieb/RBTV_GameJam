@@ -167,7 +167,7 @@ public class CharacterSelection : MonoBehaviour
         {
             if (CurrentPlayers[i].getPlayer() == player)
             {
-                Vector2 temp;
+               // Vector2 temp;
                 switch (CurrentPlayers[i].getPlayer())
                 {
                     case PlayerEnum.Player1:

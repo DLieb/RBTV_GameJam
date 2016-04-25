@@ -10,7 +10,14 @@ public class PlayerController : MonoBehaviour {
     public string currentPlayerPrefix = "Joy1";
 
     private bool immortalityGranted = false;
-    public bool ImmortalityGranted { get { return immortalityGranted; } }
+    public bool ImmortalityGranted
+    {
+        get { return immortalityGranted; }
+        set { immortalityGranted = value; }
+    }
+    private AudioSource speaker;
+    public AudioClip hitSound;
+   
 
     public int lifes = 3;
 
@@ -20,7 +27,9 @@ public class PlayerController : MonoBehaviour {
     public bool hasPowerUp = false;
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
+        speaker = Camera.main.GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -44,6 +53,7 @@ public class PlayerController : MonoBehaviour {
     public void reduceLife()
     {
         lifes = lifes - 1;
+        speaker.PlayOneShot(hitSound);
         if (lifes == 0)
         {
             GameControl.instance.reducePlayerCount();

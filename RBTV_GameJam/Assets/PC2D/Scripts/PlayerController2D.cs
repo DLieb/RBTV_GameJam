@@ -18,6 +18,8 @@ public class PlayerController2D : MonoBehaviour
     private bool _oneWayPlatformsAreWalls;
 	private Direction direction = Direction.right;
 	public Direction Direction { get { return direction; } }
+    public AudioClip[] AudioClips;
+    private AudioSource speaker;
     
     private PlayerController player;
 
@@ -27,6 +29,7 @@ public class PlayerController2D : MonoBehaviour
     {
         _motor = GetComponent<PlatformerMotor2D>();
         player = transform.GetComponent<PlayerController>();
+        speaker = Camera.main.GetComponent<AudioSource>();
     }
 
     // before enter en freedom state for ladders
@@ -74,6 +77,7 @@ public class PlayerController2D : MonoBehaviour
         {
             _motor.Jump();
             _motor.DisableRestrictedArea();
+            speaker.PlayOneShot(AudioClips[0]);
         }
 
 		_motor.jumpingHeld = Input.GetButton(player.currentPlayerPrefix + PC2D.Input.JUMP);
@@ -137,6 +141,7 @@ public class PlayerController2D : MonoBehaviour
 		if (Input.GetButtonDown(player.currentPlayerPrefix + PC2D.Input.DASH))
         {
             _motor.Dash();
+            speaker.PlayOneShot(AudioClips[1]);
         }
     }
 }

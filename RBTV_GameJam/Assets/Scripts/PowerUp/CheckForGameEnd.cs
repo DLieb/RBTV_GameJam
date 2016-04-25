@@ -11,7 +11,7 @@ public class CheckForGameEnd : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log("current players: " + GameControl.instance.currentPlayers);
+        //Debug.Log("current players: " + GameControl.instance.currentPlayers);
         if (GameControl.instance.currentPlayers == 1)
         {
             SceneManager.LoadScene(2);

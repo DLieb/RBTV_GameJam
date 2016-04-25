@@ -31,7 +31,7 @@ public class PeanutSpawnScript : MonoBehaviour {
     public void spawnPeanutRandomLocation()
     {
         //get random x, get random y
-        Random rnd = new Random();
+        //Random rnd = new Random();
         bool spawnPointFound = false;
         int spawnX = 1;
         int spawnY = 1;

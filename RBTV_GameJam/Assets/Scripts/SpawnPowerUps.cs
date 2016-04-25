@@ -10,7 +10,7 @@ public class SpawnPowerUps : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-	    spawnPowerUpRandomLocation();
+	    StartCoroutine(waitForNewPowerUp());
 	}
 	
 
@@ -18,7 +18,6 @@ public class SpawnPowerUps : MonoBehaviour
     {
         int powerUp = Random.Range(0, PowerUps.Count);
 
-        Random rnd = new Random();
         bool spawnPointFound = false;
         int spawnX = 1;
         int spawnY = 1;

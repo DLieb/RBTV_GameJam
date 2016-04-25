@@ -8,12 +8,12 @@ public class CharacterAvatar : MonoBehaviour
 
     public GameObject characterPrefab;
     public string avatarName;
-    private Image avatar;
+    //private Image avatar;
     private Vector2 initialPosition;
 	// Use this for initialization
 	void Start ()
 	{
-	    avatar = GetComponent<Image>();
+	    //avatar = GetComponent<Image>();
 	    initialPosition = transform.position;
 	}
 
