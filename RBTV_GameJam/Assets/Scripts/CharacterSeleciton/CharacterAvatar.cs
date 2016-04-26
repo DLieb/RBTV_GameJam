@@ -8,6 +8,8 @@ public class CharacterAvatar : MonoBehaviour
 
     public GameObject characterPrefab;
     public string avatarName;
+    public int AvatarIndex;
+    public bool lockStatus;
     //private Image avatar;
     private Vector2 initialPosition;
 	// Use this for initialization

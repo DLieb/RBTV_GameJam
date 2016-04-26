@@ -7,7 +7,7 @@ public class PowerUPTransform : MonoBehaviour
     public GameObject smokeEffect;
     private GameObject PowerChar;
     public GameObject ownBody;
-    private GameObject temp;
+    private GameObject tempBody;
     private float timer;
     private GameObject tempSmoke;
     private PlayerController controller;
@@ -21,6 +21,7 @@ public class PowerUPTransform : MonoBehaviour
     private Vector2 SwordLeft;
     private Vector2 SwordRight;
     private Vector2 tempDirection;
+    public bool hasPowerUp=false;
 
     void Start()
     {
@@ -31,47 +32,52 @@ public class PowerUPTransform : MonoBehaviour
 
     public void transformPower(GameObject Attack,GameObject Char, float timer)
     {
-        AttackObject = Attack;
-        this.PowerChar = Char;
-        this.timer = timer;
-        controller.ImmortalityGranted = true;
-        tempSmoke = Instantiate(smokeEffect, transform.position, Quaternion.identity) as GameObject;
-        ChangeChild();
-        if (PowerSound)
+        if (!hasPowerUp)
         {
-            speaker.PlayOneShot(PowerSound);
+            AttackObject = Attack;
+            this.PowerChar = Char;
+            this.timer = timer;
+            controller.ImmortalityGranted = true;
+            tempSmoke = Instantiate(smokeEffect, transform.position, Quaternion.identity) as GameObject;
+            ChangeChild();
+            if (PowerSound)
+            {
+                speaker.PlayOneShot(PowerSound);
+            }
         }
+      
     }
     void ChangeChild()
     {
         controller.hasPowerUp = true;
         ownBody.SetActive(false);
-        temp = Instantiate(PowerChar, ownBody.transform.position, Quaternion.identity) as GameObject;
-        temp.transform.parent = this.transform;
+        tempBody = Instantiate(PowerChar, ownBody.transform.position, Quaternion.identity) as GameObject;
+        tempBody.transform.parent = this.transform;
         if (AttackObject.name == "Cut_D")
         {
             gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
             Vector2 spawnPosition = new Vector2(transform.position.x + 1.25f, transform.position.y);
             Quaternion spawnRotation = Quaternion.Euler(0,180,0);
             swordAttack = Instantiate(AttackObject, spawnPosition, spawnRotation) as GameObject;
-            swordAttack.transform.parent = temp.transform;
+            swordAttack.transform.parent = tempBody.transform;
         }
-        StartCoroutine(ChangeBack(timer));
+        StartCoroutine(ChangeBack(timer, tempBody));
     }
 
-    IEnumerator ChangeBack(float time)
+    IEnumerator ChangeBack(float time, GameObject powerBody)
     {
         yield return new WaitForSeconds(time);
+        Destroy(powerBody);
+        Destroy(tempSmoke);
         ownBody.SetActive(true);
         controller.hasPowerUp = false;
         controller.ImmortalityGranted = false;
         if (swordAttack)
         {
-            gameObject.layer = LayerMask.NameToLayer("Default");
             Destroy(swordAttack);
         }
-        Destroy(temp);
-        Destroy(tempSmoke);
+        gameObject.layer = LayerMask.NameToLayer("Default");
+        hasPowerUp = false;
     }
 
     void ThrowLaser()

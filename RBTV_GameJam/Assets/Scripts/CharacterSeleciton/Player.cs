@@ -10,7 +10,8 @@ public class Player
     private InputEnum controller;
     private CharacterAvatar lockedAvatar;
     private GameObject selectFrame;
-    private bool locked;
+    private bool locked=false;
+    public int Iterator = 0;
 
     public Player()
     {

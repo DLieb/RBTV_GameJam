@@ -1,29 +1,16 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterSelection : MonoBehaviour
 {
-
     private bool player1Set;
     private bool player2Set;
     private bool player3Set;
     private bool player4Set;
 
-    private bool player1Locked;
-    private bool player2Locked;
-    private bool player3Locked;
-    private bool player4Locked;
-
     private bool readyToStart = true;
-
-    private int p1Iterator;
-    private int p2Iterator;
-    private int p3Iterator;
-    private int p4Iterator;
 
     public GameObject P1Select;
     public GameObject P2Select;
@@ -33,9 +20,9 @@ public class CharacterSelection : MonoBehaviour
     public List<CharacterAvatar> characterAvatars;
     private readonly List<Player> CurrentPlayers = new List<Player>();
 
-    void Start()
+    private void Start()
     {
-        List<CharacterAvatar> SortedList = characterAvatars.OrderByDescending(o => o.avatarName).ToList();
+        var SortedList = characterAvatars.OrderByDescending(o => o.avatarName).ToList();
         characterAvatars = SortedList;
     }
 
@@ -46,17 +33,19 @@ public class CharacterSelection : MonoBehaviour
         {
             SetPlayer(InputEnum.Joy1);
             player1Set = true;
-        }else if (Input.GetButtonDown("Key1StartButton") && !player1Set)
+        }
+        else if (Input.GetButtonDown("Key1StartButton") && !player1Set)
         {
             SetPlayer(InputEnum.Key1);
             player1Set = true;
         }
-        
+
         if (Input.GetButtonDown("Joy2StartButton") && !player2Set)
         {
             SetPlayer(InputEnum.Joy2);
             player2Set = true;
-        } else if(Input.GetButtonDown("Key2StartButton") && !player2Set)
+        }
+        else if (Input.GetButtonDown("Key2StartButton") && !player2Set)
         {
             SetPlayer(InputEnum.Key2);
             player2Set = true;
@@ -78,37 +67,40 @@ public class CharacterSelection : MonoBehaviour
     {
         var temp = new Player();
         temp.setController(input);
-        //temp.setGameCharacter(CharacterPrefab);
         var listener = gameObject.AddComponent<InputListener>();
         GameObject tempFrame;
         switch (CurrentPlayers.Count)
         {
             case 0:
                 temp.setPlayer(PlayerEnum.Player1);
-                tempFrame = Instantiate(P1Select, characterAvatars[p1Iterator].transform.position,
-                    Quaternion.identity)as GameObject;
-                tempFrame.transform.localScale = characterAvatars[p1Iterator].transform.localScale;
+                temp.Iterator = getNextFreeAvatarID(0, 0);
+                tempFrame = Instantiate(P1Select, characterAvatars[temp.Iterator].transform.position,
+                    Quaternion.identity) as GameObject;
+                tempFrame.transform.localScale = characterAvatars[temp.Iterator].transform.localScale;
                 temp.SetSelectFrame(tempFrame);
                 break;
             case 1:
                 temp.setPlayer(PlayerEnum.Player2);
-                tempFrame = Instantiate(P2Select, characterAvatars[p2Iterator].transform.position,
+                temp.Iterator = getNextFreeAvatarID(0, 0);
+                tempFrame = Instantiate(P2Select, characterAvatars[temp.Iterator].transform.position,
                     Quaternion.identity) as GameObject;
-                tempFrame.transform.localScale = characterAvatars[p2Iterator].transform.localScale;
+                tempFrame.transform.localScale = characterAvatars[temp.Iterator].transform.localScale;
                 temp.SetSelectFrame(tempFrame);
                 break;
             case 2:
                 temp.setPlayer(PlayerEnum.Player3);
-                tempFrame = Instantiate(P3Select, characterAvatars[p3Iterator].transform.position,
+                temp.Iterator = getNextFreeAvatarID(0, 0);
+                tempFrame = Instantiate(P3Select, characterAvatars[temp.Iterator].transform.position,
                     Quaternion.identity) as GameObject;
-                tempFrame.transform.localScale = characterAvatars[p3Iterator].transform.localScale;
+                tempFrame.transform.localScale = characterAvatars[temp.Iterator].transform.localScale;
                 temp.SetSelectFrame(tempFrame);
                 break;
             case 3:
                 temp.setPlayer(PlayerEnum.Player4);
-                tempFrame = Instantiate(P4Select, characterAvatars[p4Iterator].transform.position,
+                temp.Iterator = getNextFreeAvatarID(0, 0);
+                tempFrame = Instantiate(P4Select, characterAvatars[temp.Iterator].transform.position,
                     Quaternion.identity) as GameObject;
-                tempFrame.transform.localScale = characterAvatars[p4Iterator].transform.localScale;
+                tempFrame.transform.localScale = characterAvatars[temp.Iterator].transform.localScale;
                 temp.SetSelectFrame(tempFrame);
                 break;
         }
@@ -117,148 +109,114 @@ public class CharacterSelection : MonoBehaviour
         Debug.Log("Added Player " + temp.getPlayer());
     }
 
+    //Needs Start Iteration Index and +/- 1 to define direction
+    public int getNextFreeAvatarID(int startIterate, int direction)
+    {
+        var found = false;
+        var temp = 0;
+        var x = startIterate + direction;
+        if (x >= characterAvatars.Count)
+        {
+            x = 0;
+        }
+        if (direction > 0)
+        {
+            for (var i = x; i < characterAvatars.Count; i++)
+            {
+                if (characterAvatars[i].lockStatus == false)
+                {
+                    temp = characterAvatars[i].AvatarIndex;
+                    found = true;
+                    break;
+                }
+            }
+            if (!found)
+            {
+                for (var i = 0; i < characterAvatars.Count; i++)
+                {
+                    if (characterAvatars[i].lockStatus == false)
+                    {
+                        temp = characterAvatars[i].AvatarIndex;
+                        break;
+                    }
+                }
+            }
+        }
+        else if (direction < 0)
+        {
+            for (var i = x; i >= 0; i--)
+            {
+                if (characterAvatars[i].lockStatus == false)
+                {
+                    temp = characterAvatars[i].AvatarIndex;
+                    found = true;
+                    break;
+                }
+            }
+            if (!found)
+            {
+                for (var i = characterAvatars.Count - 1; i < characterAvatars.Count; i--)
+                {
+                    if (characterAvatars[i].lockStatus == false)
+                    {
+                        temp = characterAvatars[i].AvatarIndex;
+                        break;
+                    }
+                }
+            }
+        }
+        Debug.Log("Next free Avatar Id Is" + temp);
+        return temp;
+    }
+
     public void changeAvatarSelection(Player player, int iteration)
     {
         Vector2 temp;
-        switch (player.getPlayer())
+        if (!player.getLockedStatus())
         {
-            case PlayerEnum.Player1:
-                if (!player1Locked)
-                {
-                    p1Iterator = iterate(p1Iterator, iteration);
-                    temp = characterAvatars[p1Iterator].transform.position;
-                    player.GetFrame().transform.position = temp;
-                    //textMeshes[0].text = player + "Has " + characterAvatars[p1Iterator].name + "selected";
-                }
-                break;
-            case PlayerEnum.Player2:
-                if (!player2Locked)
-                {
-                    p2Iterator = iterate(p2Iterator, iteration);
-                    temp = characterAvatars[p2Iterator].transform.position;
-                    player.GetFrame().transform.position = temp;
-                    //textMeshes[1].text = player + "Has " + characterAvatars[p2Iterator].name +"selected";
-                }
-                break;
-            case PlayerEnum.Player3:
-                if (!player3Locked)
-                {
-                    p3Iterator = iterate(p3Iterator, iteration);
-                    temp = characterAvatars[p3Iterator].transform.position;
-                    player.GetFrame().transform.position = temp;
-                    //textMeshes[2].text = player + "Has " + characterAvatars[p3Iterator].name +"selected";
-                }
-                break;
-            case PlayerEnum.Player4:
-                if (!player4Locked)
-                {
-                    p4Iterator = iterate(p4Iterator, iteration);
-                    temp = characterAvatars[p4Iterator].transform.position;
-                    player.GetFrame().transform.position = temp;
-                    //textMeshes[3].text = player + "Has " + characterAvatars[p4Iterator].name +"selected";
-                }
-                break;
+            player.Iterator = getNextFreeAvatarID(player.Iterator, iteration);
+            temp = characterAvatars[player.Iterator].transform.position;
+            player.GetFrame().transform.position = temp;
         }
     }
 
-    public void LockAvatar(PlayerEnum player)
+    public void LockAvatar(Player player)
     {
         for (var i = 0; i < CurrentPlayers.Count; i++)
         {
-            if (CurrentPlayers[i].getPlayer() == player)
+            if (CurrentPlayers[i] == player)
             {
-               // Vector2 temp;
-                switch (CurrentPlayers[i].getPlayer())
-                {
-                    case PlayerEnum.Player1:
-                        if (!player1Locked)
-                        {
-                            CurrentPlayers[i].setGameCharacter(characterAvatars[p1Iterator].getCharacterPrefab());
-                            CurrentPlayers[i].SetLockedAvatar(characterAvatars[p1Iterator]);
-                            CurrentPlayers[i].setLockedStatus(true);
-                            Color b = characterAvatars[p1Iterator].GetComponent<SpriteRenderer>().color;
-                            b.a = 0.4f;
-                            characterAvatars[p1Iterator].GetComponent<SpriteRenderer>().color = b;
-                            removeAvatar(characterAvatars[p1Iterator]);
-                            
-                            player1Locked = true;
-                        }
-                        break;
-                    case PlayerEnum.Player2:
-                        if (!player2Locked)
-                        {
-                            CurrentPlayers[i].setGameCharacter(characterAvatars[p2Iterator].getCharacterPrefab());
-                            CurrentPlayers[i].SetLockedAvatar(characterAvatars[p2Iterator]);
-                            CurrentPlayers[i].setLockedStatus(true);
-                            Color b = characterAvatars[p2Iterator].GetComponent<SpriteRenderer>().color;
-                            b.a = 0.4f;
-                            characterAvatars[p2Iterator].GetComponent<SpriteRenderer>().color = b;
-                            removeAvatar(characterAvatars[p2Iterator]);
-                            
-
-                            player2Locked = true;
-                        }
-                        break;
-                    case PlayerEnum.Player3:
-                        if (!player3Locked)
-                        {
-                            CurrentPlayers[i].setGameCharacter(characterAvatars[p3Iterator].getCharacterPrefab());
-                            CurrentPlayers[i].SetLockedAvatar(characterAvatars[p3Iterator]);
-                            CurrentPlayers[i].setLockedStatus(true);
-                            Color b = characterAvatars[p3Iterator].GetComponent<SpriteRenderer>().color;
-                            b.a = 0.4f;
-                            characterAvatars[p3Iterator].GetComponent<SpriteRenderer>().color = b;
-                            removeAvatar(characterAvatars[p3Iterator]);
-
-                            player3Locked = true;
-                        }
-                        break;
-
-                    case PlayerEnum.Player4:
-                        if (!player4Locked)
-                        {
-                            CurrentPlayers[i].setGameCharacter(characterAvatars[p4Iterator].getCharacterPrefab());
-                            CurrentPlayers[i].SetLockedAvatar(characterAvatars[p4Iterator]);
-                            CurrentPlayers[i].setLockedStatus(true);
-                            Color b = characterAvatars[p4Iterator].GetComponent<SpriteRenderer>().color;
-                            b.a = 0.4f;
-                            characterAvatars[p4Iterator].GetComponent<SpriteRenderer>().color = b;
-                            removeAvatar(characterAvatars[p4Iterator]);
-
-                            player4Locked = true;
-                        }
-                        break;
-                }
-                //Debug.Log(player.ToString() + "locked" + characterAvatars[p1Iterator].name);
-                
+                CurrentPlayers[i].setGameCharacter(characterAvatars[player.Iterator].getCharacterPrefab());
+                player.setLockedStatus(true);
+                characterAvatars[player.Iterator].lockStatus = true;
+                var b = characterAvatars[player.Iterator].GetComponent<SpriteRenderer>().color;
+                b.a = 0.4f;
+                characterAvatars[player.Iterator].GetComponent<SpriteRenderer>().color = b;
+                ResetIteratorsForOthers(player);
             }
         }
     }
 
-    private int iterate(int iterator, int iteration)
+    private void ResetIteratorsForOthers(Player LockedPlayer)
     {
-        int temp;
-        if (iterator == characterAvatars.Count - 1 && iteration == 1)
+        Vector2 temp;
+        for (var i = 0; i < CurrentPlayers.Count; i++)
         {
-            temp = 0;
+            if (LockedPlayer != CurrentPlayers[i] && CurrentPlayers[i].Iterator == LockedPlayer.Iterator)
+            {
+                CurrentPlayers[i].Iterator = getNextFreeAvatarID(CurrentPlayers[i].Iterator, 1);
+                temp = characterAvatars[CurrentPlayers[i].Iterator].transform.position;
+                CurrentPlayers[i].GetFrame().transform.position = temp;
+            }
         }
-        else if (iterator == 0 && iteration == -1)
-        {
-            temp = characterAvatars.Count - 1;
-        }
-        else
-        {
-            temp = iterator + iteration;
-        }
-        return temp;
     }
 
     public void StartGame()
     {
         readyToStart = true;
-        for (var i = 0; i < CurrentPlayers.Count ; i++)
+        for (var i = 0; i < CurrentPlayers.Count; i++)
         {
-            if (CurrentPlayers[i].getLockedStatus()==false)
+            if (CurrentPlayers[i].getLockedStatus() == false)
             {
                 Debug.Log(CurrentPlayers[i].getPlayer() + " hasn't chosen an Avatar yet");
                 readyToStart = false;
@@ -271,104 +229,22 @@ public class CharacterSelection : MonoBehaviour
         }
         else
         {
-            Debug.Log("You need at least 2 Players you got "+ CurrentPlayers.Count);
+            Debug.Log("You need at least 2 Players you got " + CurrentPlayers.Count);
         }
     }
 
-    private void removeAvatar(CharacterAvatar avatar)
+    public void UnLockAvatar(Player player)
     {
-        for (var i = 0; i < characterAvatars.Count ; i++) //CharacterAvatar x in characterAvatars)
+        for (var i = 0; i < CurrentPlayers.Count; i++)
         {
-            if (avatar == characterAvatars[i])
+            if (CurrentPlayers[i] == player)
             {
-                characterAvatars.Remove(characterAvatars[i]);
-                List<CharacterAvatar> SortedList = characterAvatars.OrderByDescending(o => o.avatarName).ToList();
-                characterAvatars = SortedList;
+                CurrentPlayers[i].setLockedStatus(false);
+                var temp = characterAvatars[player.Iterator].GetComponent<SpriteRenderer>().color;
+                temp.a = 1f;
+                characterAvatars[player.Iterator].GetComponent<SpriteRenderer>().color = temp;
+                characterAvatars[player.Iterator].lockStatus = false;
             }
         }
     }
-
-    private void reAddAvatar(CharacterAvatar avatar)
-    {
-        characterAvatars.Add(avatar);
-        List<CharacterAvatar> SortedList = characterAvatars.OrderByDescending(o => o.avatarName).ToList();
-        characterAvatars = SortedList;
-    }
-    public void UnLockAvatar(PlayerEnum player)
-    {
-        for (int i = 0; i < CurrentPlayers.Count; i++)
-        {
-            if (CurrentPlayers[i].getPlayer() == player)
-            {
-                switch (CurrentPlayers[i].getPlayer())
-                {
-                        case PlayerEnum.Player1:
-                        if (player1Locked)
-                        {
-                            CharacterAvatar x = CurrentPlayers[i].GetLockedAvatar();
-                            x.transform.position = x.GetInitialPosition();
-                            CurrentPlayers[i].GetFrame().transform.position = x.GetInitialPosition();
-                            CurrentPlayers[i].setLockedStatus(false);
-                            reAddAvatar(x);
-                            Color temp = x.GetComponent<SpriteRenderer>().color;
-                            temp.a = 1f;
-                            x.GetComponent<SpriteRenderer>().color = temp;
-                            player1Locked = false;
-                        }
-                        break;
-                        case PlayerEnum.Player2:
-                        if (player2Locked)
-                        {
-                            CharacterAvatar x = CurrentPlayers[i].GetLockedAvatar();
-                            x.transform.position = x.GetInitialPosition();
-                            CurrentPlayers[i].GetFrame().transform.position = x.GetInitialPosition();
-                            CurrentPlayers[i].setLockedStatus(false);
-                            reAddAvatar(x);
-
-                            Color temp = x.GetComponent<SpriteRenderer>().color;
-                            temp.a = 1f;
-                            x.GetComponent<SpriteRenderer>().color = temp;
-                            player2Locked = false;
-                        }
-                        break;
-                        case PlayerEnum.Player3:
-                        if (player3Locked)
-                        {
-                            CharacterAvatar x = CurrentPlayers[i].GetLockedAvatar();
-                            x.transform.position = x.GetInitialPosition();
-                            CurrentPlayers[i].GetFrame().transform.position = x.GetInitialPosition();
-                            CurrentPlayers[i].setLockedStatus(false);
-                            reAddAvatar(x);
-
-                            Color temp = x.GetComponent<SpriteRenderer>().color;
-                            temp.a = 1f;
-                            x.GetComponent<SpriteRenderer>().color = temp;
-                            player3Locked = false;
-                        }
-                        break;
-                        case PlayerEnum.Player4:
-                        if (player4Locked)
-                        {
-                            CharacterAvatar x = CurrentPlayers[i].GetLockedAvatar();
-                            x.transform.position = x.GetInitialPosition();
-                            CurrentPlayers[i].GetFrame().transform.position = x.GetInitialPosition();
-                            CurrentPlayers[i].setLockedStatus(false);
-                            reAddAvatar(x);
-
-                            Color temp = x.GetComponent<SpriteRenderer>().color;
-                            temp.a = 1f;
-                            x.GetComponent<SpriteRenderer>().color = temp;
-                            player4Locked = false;
-                        }
-                        break;
-                }
-            }
-        }
-    }
-
-    /*void InstantiatePlayerBeacon(PlayerEnum player)
-    {
-        GameObject BeaconP1 = Instantiate(textMeshPrefab, Vector2.zero,Quaternion.identity)as GameObject;
-        BeaconP1.GetComponent<TextMesh>().text = player.ToString();
-    }*/
 }

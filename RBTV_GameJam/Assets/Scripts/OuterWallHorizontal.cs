@@ -8,6 +8,15 @@ public class OuterWallHorizontal : MonoBehaviour {
         //if(coll)
         //print("collision detected");
         //print(collision.gameObject.tag);
-        collision.transform.position = new Vector2(collision.transform.position.x , ((collision.transform.position.y * -1)-1));
+        float y = -collision.transform.position.y;
+        if (collision.transform.position.y < 0)
+        {
+            y -= 1;
+        }
+        else
+        {
+            y += 1;
+        }
+        collision.transform.position = new Vector2(collision.transform.position.x , y);
     }
 }

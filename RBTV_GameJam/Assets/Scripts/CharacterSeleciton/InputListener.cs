@@ -43,7 +43,7 @@ public class InputListener : MonoBehaviour
             {
                 if (characterSelection)
                 {
-                    characterSelection.LockAvatar(player.getPlayer());
+                    characterSelection.LockAvatar(player);
                 }
                 waitWithInput = true;
                 Invoke("ResetWaitWithInput", 0.2f);
@@ -63,7 +63,7 @@ public class InputListener : MonoBehaviour
             {
                 if (characterSelection)
                 {
-                    characterSelection.UnLockAvatar(player.getPlayer());
+                    characterSelection.UnLockAvatar(player);
                 }
                 waitWithInput = true;
                 Invoke("ResetWaitWithInput", 0.2f);
@@ -78,7 +78,7 @@ public class InputListener : MonoBehaviour
 
     public void setPlayer(Player x)
     {
-        Debug.Log("Player set!" + x.getPlayer().ToString());
+        //Debug.Log("Player set!" + x.getPlayer().ToString());
         this.player = x;
     }
 

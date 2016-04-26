@@ -7,6 +7,15 @@ public class OuterWallCollision : MonoBehaviour {
     {
         print("collision detected");
         print(collision.gameObject.tag);
-        collision.transform.position = new Vector2(collision.transform.position.x * -1, collision.transform.position.y);
+        float x = -collision.transform.position.x;
+        if (collision.transform.position.x < 0)
+        {
+            x -= 1;
+        }
+        else
+        {
+            x += 1;
+        }
+        collision.transform.position = new Vector2(x, collision.transform.position.y);
     }
 }

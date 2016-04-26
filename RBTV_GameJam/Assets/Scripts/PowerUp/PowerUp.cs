@@ -26,8 +26,12 @@ public class PowerUp : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            other.gameObject.GetComponent<PowerUPTransform>().transformPower(this.Attack,this.PowerChar,this.PowerTime);
-            Destroy(this.gameObject);
+            PowerUPTransform temp = other.gameObject.GetComponent<PowerUPTransform>();
+            if (!temp.hasPowerUp)
+            {
+                other.gameObject.GetComponent<PowerUPTransform>().transformPower(this.Attack, this.PowerChar, this.PowerTime);
+                Destroy(this.gameObject);
+            }
         }
     }
 }
