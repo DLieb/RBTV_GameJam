@@ -77,7 +77,7 @@ public class PlayerController2D : MonoBehaviour
         {
             _motor.Jump();
             _motor.DisableRestrictedArea();
-            speaker.PlayOneShot(AudioClips[0]);
+            //speaker.PlayOneShot(AudioClips[0]);
         }
 
 		_motor.jumpingHeld = Input.GetButton(player.currentPlayerPrefix + PC2D.Input.JUMP);
@@ -141,7 +141,7 @@ public class PlayerController2D : MonoBehaviour
 		if (Input.GetButtonDown(player.currentPlayerPrefix + PC2D.Input.DASH))
         {
             _motor.Dash();
-            speaker.PlayOneShot(AudioClips[1]);
+            //speaker.PlayOneShot(AudioClips[1]);
         }
     }
 }
