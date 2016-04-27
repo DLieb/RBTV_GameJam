@@ -7,6 +7,7 @@ public class InputListener : MonoBehaviour
 
     private CharacterSelection characterSelection;
     private bool waitWithInput = false;
+    private bool charLock = false;
 	// Use this for initialization
 	void Start ()
 	{
@@ -38,17 +39,31 @@ public class InputListener : MonoBehaviour
                 waitWithInput = true;
                 Invoke("ResetWaitWithInput", 0.2f);
             }
-            if ((Input.GetButtonDown(player.getJoyPad().ToString() + "Jump") 
-                || (player.getJoyPad() == InputEnum.Key1 && Input.GetKey(KeyCode.UpArrow))|| (player.getJoyPad() == InputEnum.Key2 && Input.GetKey(KeyCode.W))) && !waitWithInput)
+            if (Input.GetButtonDown(player.getJoyPad().ToString() + "Jump") && !waitWithInput)
             {
                 if (characterSelection)
                 {
-                    characterSelection.LockAvatar(player);
+                    if (!charLock)
+                    {
+                        characterSelection.LockAvatar(player);
+                        charLock = true;
+                    }
+                    else
+                    {
+                        characterSelection.UnLockAvatar(player);
+                        charLock = false;
+                    }
                 }
                 waitWithInput = true;
                 Invoke("ResetWaitWithInput", 0.2f);
             }
-            if ((Input.GetButtonDown(player.getJoyPad().ToString() + "Dash") 
+            if (Input.GetButtonDown(player.getJoyPad().ToString() + "StartButton") && !waitWithInput)
+            {
+                characterSelection.StartGame();
+                waitWithInput = true;
+                Invoke("ResetWaitWithInput", 0.2f);
+            }
+            /*if ((Input.GetButtonDown(player.getJoyPad().ToString() + "Dash") 
                 || (player.getJoyPad() == InputEnum.Key1 && Input.GetKey(KeyCode.RightShift)) || (player.getJoyPad() == InputEnum.Key2 && Input.GetKey(KeyCode.LeftShift))) && !waitWithInput)
             {
                 if (characterSelection)
@@ -57,8 +72,8 @@ public class InputListener : MonoBehaviour
                 }
                 waitWithInput = true;
                 Invoke("ResetWaitWithInput", 0.2f);
-            }
-            if ((Input.GetButtonDown(player.getJoyPad().ToString() + "Throw")
+            }*/
+            /*if ((Input.GetButtonDown(player.getJoyPad().ToString() + "Throw")
                 || (player.getJoyPad() == InputEnum.Key1 && Input.GetKey(KeyCode.RightControl)) || (player.getJoyPad() == InputEnum.Key2 && Input.GetKey(KeyCode.LeftControl))) && !waitWithInput)
             {
                 if (characterSelection)
@@ -67,7 +82,7 @@ public class InputListener : MonoBehaviour
                 }
                 waitWithInput = true;
                 Invoke("ResetWaitWithInput", 0.2f);
-            }
+            }*/
         }
 	}
 
