@@ -22,9 +22,22 @@ public class PowerUp : MonoBehaviour
         return Attack;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    /*void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
+        {
+            PowerUPTransform temp = other.gameObject.GetComponent<PowerUPTransform>();
+            if (!temp.hasPowerUp)
+            {
+                other.gameObject.GetComponent<PowerUPTransform>().transformPower(this.Attack, this.PowerChar, this.PowerTime);
+                Destroy(this.gameObject);
+            }
+        }
+    }*/
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Player")
         {
             PowerUPTransform temp = other.gameObject.GetComponent<PowerUPTransform>();
             if (!temp.hasPowerUp)

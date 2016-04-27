@@ -39,11 +39,13 @@ public class PowerUPTransform : MonoBehaviour
             this.timer = timer;
             controller.ImmortalityGranted = true;
             tempSmoke = Instantiate(smokeEffect, transform.position, Quaternion.identity) as GameObject;
+            StartCoroutine(DestroyObject(tempSmoke, 1.5f));
             ChangeChild();
             if (PowerSound)
             {
                 speaker.PlayOneShot(PowerSound);
             }
+            hasPowerUp = true;
         }
       
     }
@@ -64,11 +66,16 @@ public class PowerUPTransform : MonoBehaviour
         StartCoroutine(ChangeBack(timer, tempBody));
     }
 
+    IEnumerator DestroyObject(GameObject toDestroy, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(toDestroy);
+    }
+
     IEnumerator ChangeBack(float time, GameObject powerBody)
     {
         yield return new WaitForSeconds(time);
         Destroy(powerBody);
-        Destroy(tempSmoke);
         ownBody.SetActive(true);
         controller.hasPowerUp = false;
         controller.ImmortalityGranted = false;
