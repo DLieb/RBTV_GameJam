@@ -5,10 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class CharacterSelection : MonoBehaviour
 {
-    private bool player1Set;
-    private bool player2Set;
-    private bool player3Set;
-    private bool player4Set;
+    private bool joy1Set;
+    private bool key1Set;
+    private bool key2Set;
+    private bool joy2Set;
+    private bool joy3Set;
+    private bool joy4Set;
 
     private bool readyToStart = true;
 
@@ -29,84 +31,88 @@ public class CharacterSelection : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetButtonDown("Joy1StartButton") && !player1Set)
+        if (Input.GetButtonDown("Joy1StartButton") && !joy1Set)
         {
             SetPlayer(InputEnum.Joy1);
-            player1Set = true;
+            joy1Set = true;
         }
-        else if (Input.GetButtonDown("Key1StartButton") && !player1Set)
+        if (Input.GetButtonDown("Key1StartButton") && !key1Set)
         {
             SetPlayer(InputEnum.Key1);
-            player1Set = true;
+            key1Set = true;
         }
 
-        if (Input.GetButtonDown("Joy2StartButton") && !player2Set)
+        if (Input.GetButtonDown("Joy2StartButton") && !joy2Set)
         {
             SetPlayer(InputEnum.Joy2);
-            player2Set = true;
+            joy2Set = true;
         }
-        else if (Input.GetButtonDown("Key2StartButton") && !player2Set)
+        if (Input.GetButtonDown("Key2StartButton") && !key2Set)
         {
             SetPlayer(InputEnum.Key2);
-            player2Set = true;
+            key2Set = true;
         }
 
-        if (Input.GetButtonDown("Joy3StartButton") && !player3Set)
+        if (Input.GetButtonDown("Joy3StartButton") && !joy3Set)
         {
             SetPlayer(InputEnum.Joy3);
-            player3Set = true;
+            joy3Set = true;
         }
-        if (Input.GetButtonDown("Joy4StartButton") && !player4Set)
+        if (Input.GetButtonDown("Joy4StartButton") && !joy4Set)
         {
             SetPlayer(InputEnum.Joy4);
-            player4Set = true;
+            joy4Set = true;
         }
     }
 
     private void SetPlayer(InputEnum input)
     {
-        var temp = new Player();
-        temp.setController(input);
-        var listener = gameObject.AddComponent<InputListener>();
-        GameObject tempFrame;
-        switch (CurrentPlayers.Count)
+        if (CurrentPlayers.Count != 4)
         {
-            case 0:
-                temp.setPlayer(PlayerEnum.Player1);
-                temp.Iterator = getNextFreeAvatarID(0, 0);
-                tempFrame = Instantiate(P1Select, characterAvatars[temp.Iterator].transform.position,
-                    Quaternion.identity) as GameObject;
-                tempFrame.transform.localScale = characterAvatars[temp.Iterator].transform.localScale;
-                temp.SetSelectFrame(tempFrame);
-                break;
-            case 1:
-                temp.setPlayer(PlayerEnum.Player2);
-                temp.Iterator = getNextFreeAvatarID(0, 0);
-                tempFrame = Instantiate(P2Select, characterAvatars[temp.Iterator].transform.position,
-                    Quaternion.identity) as GameObject;
-                tempFrame.transform.localScale = characterAvatars[temp.Iterator].transform.localScale;
-                temp.SetSelectFrame(tempFrame);
-                break;
-            case 2:
-                temp.setPlayer(PlayerEnum.Player3);
-                temp.Iterator = getNextFreeAvatarID(0, 0);
-                tempFrame = Instantiate(P3Select, characterAvatars[temp.Iterator].transform.position,
-                    Quaternion.identity) as GameObject;
-                tempFrame.transform.localScale = characterAvatars[temp.Iterator].transform.localScale;
-                temp.SetSelectFrame(tempFrame);
-                break;
-            case 3:
-                temp.setPlayer(PlayerEnum.Player4);
-                temp.Iterator = getNextFreeAvatarID(0, 0);
-                tempFrame = Instantiate(P4Select, characterAvatars[temp.Iterator].transform.position,
-                    Quaternion.identity) as GameObject;
-                tempFrame.transform.localScale = characterAvatars[temp.Iterator].transform.localScale;
-                temp.SetSelectFrame(tempFrame);
-                break;
+            var temp = new Player();
+            temp.setController(input);
+            var listener = gameObject.AddComponent<InputListener>();
+            GameObject tempFrame;
+            switch (CurrentPlayers.Count)
+            {
+                case 0:
+                    temp.setPlayer(PlayerEnum.Player1);
+                    temp.Iterator = getNextFreeAvatarID(0, 0);
+                    tempFrame = Instantiate(P1Select, characterAvatars[temp.Iterator].transform.position,
+                        Quaternion.identity) as GameObject;
+                    tempFrame.transform.localScale = characterAvatars[temp.Iterator].transform.localScale;
+                    temp.SetSelectFrame(tempFrame);
+                    break;
+                case 1:
+                    temp.setPlayer(PlayerEnum.Player2);
+                    temp.Iterator = getNextFreeAvatarID(0, 0);
+                    tempFrame = Instantiate(P2Select, characterAvatars[temp.Iterator].transform.position,
+                        Quaternion.identity) as GameObject;
+                    tempFrame.transform.localScale = characterAvatars[temp.Iterator].transform.localScale;
+                    temp.SetSelectFrame(tempFrame);
+                    break;
+                case 2:
+                    temp.setPlayer(PlayerEnum.Player3);
+                    temp.Iterator = getNextFreeAvatarID(0, 0);
+                    tempFrame = Instantiate(P3Select, characterAvatars[temp.Iterator].transform.position,
+                        Quaternion.identity) as GameObject;
+                    tempFrame.transform.localScale = characterAvatars[temp.Iterator].transform.localScale;
+                    temp.SetSelectFrame(tempFrame);
+                    break;
+                case 3:
+                    temp.setPlayer(PlayerEnum.Player4);
+                    temp.Iterator = getNextFreeAvatarID(0, 0);
+                    tempFrame = Instantiate(P4Select, characterAvatars[temp.Iterator].transform.position,
+                        Quaternion.identity) as GameObject;
+                    tempFrame.transform.localScale = characterAvatars[temp.Iterator].transform.localScale;
+                    temp.SetSelectFrame(tempFrame);
+                    break;
+            }
+            listener.setPlayer(temp);
+            CurrentPlayers.Add(temp);
+            Debug.Log("Added Player " + temp.getPlayer());
         }
-        listener.setPlayer(temp);
-        CurrentPlayers.Add(temp);
-        Debug.Log("Added Player " + temp.getPlayer());
+        
     }
 
     //Needs Start Iteration Index and +/- 1 to define direction
