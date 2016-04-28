@@ -125,7 +125,7 @@ public class CharacterSelection : MonoBehaviour
         {
             x = 0;
         }
-        if (direction > 0)
+        if (direction >= 0)
         {
             for (var i = x; i < characterAvatars.Count; i++)
             {
