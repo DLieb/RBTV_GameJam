@@ -29,7 +29,7 @@ public class PlayerController2D : MonoBehaviour
     {
         _motor = GetComponent<PlatformerMotor2D>();
         player = transform.GetComponent<PlayerController>();
-        speaker = Camera.main.GetComponent<AudioSource>();
+        speaker = GetComponent<AudioSource>();
     }
 
     // before enter en freedom state for ladders

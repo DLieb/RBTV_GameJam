@@ -171,7 +171,7 @@ public class CharacterSelection : MonoBehaviour
                 }
             }
         }
-        Debug.Log("Next free Avatar Id Is" + temp);
+        //Debug.Log("Next free Avatar Id Is" + temp);
         return temp;
     }
 
