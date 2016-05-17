@@ -69,7 +69,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AnimationEvent.cs" />
     <Compile Include="Assets\PC2D\Example\CameraFollow.cs" />
     <Compile Include="Assets\PC2D\Example\DifferentSpeeds\DifferentSpeeds.cs" />
     <Compile Include="Assets\PC2D\Example\LadderBody.cs" />
@@ -89,29 +88,30 @@
     <Compile Include="Assets\PC2D\Scripts\PlatformerAnimation2D.cs" />
     <Compile Include="Assets\PC2D\Scripts\PlatformerMotor2D.cs" />
     <Compile Include="Assets\PC2D\Scripts\PlayerController2D.cs" />
-    <Compile Include="Assets\Scripts\AnyKey.cs" />
+    <Compile Include="Assets\Scripts\CharacterScripts\FaceAnimation.cs" />
+    <Compile Include="Assets\Scripts\CharacterScripts\PlayerCollision.cs" />
+    <Compile Include="Assets\Scripts\CharacterScripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\CharacterScripts\PowerUp\CheckForGameEnd.cs" />
+    <Compile Include="Assets\Scripts\CharacterScripts\PowerUp\DestroyAttackItem.cs" />
+    <Compile Include="Assets\Scripts\CharacterScripts\PowerUp\PowerUPTransform.cs" />
+    <Compile Include="Assets\Scripts\CharacterScripts\PowerUp\PowerUp.cs" />
+    <Compile Include="Assets\Scripts\CharacterSeleciton\AnimationEvent.cs" />
     <Compile Include="Assets\Scripts\CharacterSeleciton\CharacterAvatar.cs" />
     <Compile Include="Assets\Scripts\CharacterSeleciton\CharacterSelection.cs" />
     <Compile Include="Assets\Scripts\CharacterSeleciton\InputListener.cs" />
     <Compile Include="Assets\Scripts\CharacterSeleciton\Player.cs" />
     <Compile Include="Assets\Scripts\Enums\InputEnum.cs" />
     <Compile Include="Assets\Scripts\Enums\PlayerEnum.cs" />
-    <Compile Include="Assets\Scripts\EventManager.cs" />
-    <Compile Include="Assets\Scripts\FaceAnimation.cs" />
+    <Compile Include="Assets\Scripts\FadingAudioSource.cs" />
     <Compile Include="Assets\Scripts\GameControl.cs" />
-    <Compile Include="Assets\Scripts\InitialPeanutSpawnScript.cs" />
-    <Compile Include="Assets\Scripts\OuterWallCollision.cs" />
-    <Compile Include="Assets\Scripts\OuterWallHorizontal.cs" />
-    <Compile Include="Assets\Scripts\PeanutController.cs" />
-    <Compile Include="Assets\Scripts\PeanutSpawnScript.cs" />
-    <Compile Include="Assets\Scripts\PlayerCollision.cs" />
-    <Compile Include="Assets\Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\PowerUp\CheckForGameEnd.cs" />
-    <Compile Include="Assets\Scripts\PowerUp\DestroyAttackItem.cs" />
-    <Compile Include="Assets\Scripts\PowerUp\PowerUPTransform.cs" />
-    <Compile Include="Assets\Scripts\PowerUp\PowerUp.cs" />
-    <Compile Include="Assets\Scripts\SpawnPowerUps.cs" />
-    <Compile Include="Assets\Scripts\TogglePlatformsController.cs" />
+    <Compile Include="Assets\Scripts\GameSceneScripts\InitialPeanutSpawnScript.cs" />
+    <Compile Include="Assets\Scripts\GameSceneScripts\OuterWallCollision.cs" />
+    <Compile Include="Assets\Scripts\GameSceneScripts\OuterWallHorizontal.cs" />
+    <Compile Include="Assets\Scripts\GameSceneScripts\PeanutController.cs" />
+    <Compile Include="Assets\Scripts\GameSceneScripts\PeanutSpawnScript.cs" />
+    <Compile Include="Assets\Scripts\GameSceneScripts\SpawnPowerUps.cs" />
+    <Compile Include="Assets\Scripts\GameSceneScripts\TogglePlatformsController.cs" />
+    <Compile Include="Assets\Scripts\ReturnToCharacterSelection.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
