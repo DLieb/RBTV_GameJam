@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour {
 
     public GameObject visual;
 	public GameObject deathEffect;
+    public GameObject nussAnzeige;
 
     public bool hasPeanut = false;
     public string currentPlayerPrefix = "Joy1";
@@ -50,6 +51,16 @@ public class PlayerController : MonoBehaviour {
 	    {
 	        transform.position = new Vector2(0, 0);
 	    }
+	    if (hasPeanut && !nussAnzeige.activeSelf && !hasPowerUp)
+	    {
+	        nussAnzeige.SetActive(true);
+	        Debug.Log("Nuss On");
+	    }
+	    else if(!hasPeanut && nussAnzeige.activeSelf || hasPowerUp)
+	    {
+            nussAnzeige.SetActive(false);
+            Debug.Log("Nuss Off");
+        }
     }
     
     public void reduceLife()
