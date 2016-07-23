@@ -36,4 +36,9 @@ public class CharacterAvatar : MonoBehaviour
             return this.characterPrefab;
         }
     }
+
+    public string getAvatarName()
+    {
+        return this.avatarName;
+    }
 }

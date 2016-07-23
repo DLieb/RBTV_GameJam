@@ -58,12 +58,6 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -108,6 +102,8 @@
     <Compile Include="Assets\Scripts\CharacterSeleciton\Player.cs" />
     <Compile Include="Assets\Scripts\Enums\InputEnum.cs" />
     <Compile Include="Assets\Scripts\Enums\PlayerEnum.cs" />
+    <Compile Include="Assets\Scripts\Enums\PlayerScore.cs" />
+    <Compile Include="Assets\Scripts\Enums\ScoreEnum.cs" />
     <Compile Include="Assets\Scripts\FadingAudioSource.cs" />
     <Compile Include="Assets\Scripts\GameControl.cs" />
     <Compile Include="Assets\Scripts\GameSceneScripts\InitialPeanutSpawnScript.cs" />

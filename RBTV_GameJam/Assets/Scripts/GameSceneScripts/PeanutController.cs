@@ -4,6 +4,7 @@ using System.Collections;
 public class PeanutController : MonoBehaviour {
 
     public bool wasThrown = false;
+    public string playerWhoHasThrown="";
 
 	// Use this for initialization
 	void Start () {

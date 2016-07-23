@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CheckForGameEnd : MonoBehaviour {
 
@@ -13,17 +14,27 @@ public class CheckForGameEnd : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+        if (Input.GetKey(KeyCode.Escape) && gameEnd == false)
+        {
+            gameEnd = true;
+            GameControl.instance.SetPlayerList(new List<Player>());
+            GameControl.instance.resetScoreBoard();
+            GameControl.instance.resetPlayersLeftInGame();
+            GameControl.instance.currentPlayers = 0;
+            SceneManager.LoadScene(0);
+        }
         //Debug.Log("current players: " + GameControl.instance.currentPlayers);
-		if (GameControl.instance.currentPlayers == 1 && gameEnd == false)
+        if (GameControl.instance.currentPlayers == 1 && gameEnd == false)
         {
 			gameEnd = true;
-			StartCoroutine (EndGame());
+            GameControl.instance.setPlayerWon();
+            StartCoroutine (EndGame());
         }
 
     }
 	IEnumerator EndGame()
 	{
-		yield return new WaitForSeconds (2.5f);
+		yield return new WaitForSeconds (2f);
 		SceneManager.LoadScene(2);
 	}
 }

@@ -11,6 +11,7 @@ public class Player
     private CharacterAvatar lockedAvatar;
     private GameObject selectFrame;
     private bool locked=false;
+    private string playerName;
     public int Iterator = 0;
 
     public Player()
@@ -81,4 +82,15 @@ public class Player
     {
         this.locked = x;
     }
+
+    public void setPlayerName(string name)
+    {
+        this.playerName = name;
+    }
+
+    public string getPlayerName()
+    {
+        return this.playerName;
+    }
+
 }

@@ -10,7 +10,7 @@ public class PeanutSpawnScript : MonoBehaviour {
     public float nutSpawnDistanceY = 0.2f;
     
 
-    public void throwPeanut(float x, float y, Vector2 force, GameObject prefab)
+    public void throwPeanut(float x, float y, Vector2 force, GameObject prefab , string playerWhoThrow)
     {
         if (prefab == null)
         {
@@ -19,7 +19,9 @@ public class PeanutSpawnScript : MonoBehaviour {
         GameObject throwPeanut = spawnPeanut(x, y, prefab);
 
         throwPeanut.GetComponent<Rigidbody2D>().AddForce(force);
-        throwPeanut.GetComponent<PeanutController>().wasThrown = true;
+        PeanutController pController = throwPeanut.GetComponent<PeanutController>();
+        pController.wasThrown = true;
+        pController.playerWhoHasThrown = playerWhoThrow;
 
     }
 

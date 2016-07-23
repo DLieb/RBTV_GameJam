@@ -107,7 +107,7 @@ public class PowerUPTransform : MonoBehaviour
     {
         Vector2 directionVector = (GetComponent<PlayerController2D>().Direction.Equals(Direction.left) ? Vector2.left : Vector2.right);
         
-        GetComponent<PeanutSpawnScript>().throwPeanut(transform.position.x + directionVector.x * GetComponent<PeanutSpawnScript>().nutSpawnDistanceX, transform.position.y + GetComponent<PeanutSpawnScript>().nutSpawnDistanceY, directionVector * GetComponent<PeanutSpawnScript>().throwForce, AttackObject);
+        GetComponent<PeanutSpawnScript>().throwPeanut(transform.position.x + directionVector.x * GetComponent<PeanutSpawnScript>().nutSpawnDistanceX, transform.position.y + GetComponent<PeanutSpawnScript>().nutSpawnDistanceY, directionVector * GetComponent<PeanutSpawnScript>().throwForce, AttackObject,controller.playerName);
 		PlayAttackSound ();
     }
 	void PlayAttackSound()
@@ -154,7 +154,7 @@ public class PowerUPTransform : MonoBehaviour
         if (Vector2.Distance(transform.position, hit.transform.position) <= 3.5 && hit.transform.tag=="Player" && !hit.transform.GetComponent<PlayerController>().ImmortalityGranted)
         {
             Debug.Log(hit.rigidbody.gameObject.name);
-            hit.transform.GetComponent<PlayerController>().reduceLife();
+            hit.transform.GetComponent<PlayerController>().reduceLife(controller.playerName);
         }
 
         swordAttack.SetActive(true);

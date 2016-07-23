@@ -63,6 +63,10 @@ public class CharacterSelection : MonoBehaviour
             SetPlayer(InputEnum.Joy4);
             joy4Set = true;
         }
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     private void SetPlayer(InputEnum input)
@@ -110,7 +114,7 @@ public class CharacterSelection : MonoBehaviour
             }
             listener.setPlayer(temp);
             CurrentPlayers.Add(temp);
-            Debug.Log("Added Player " + temp.getPlayer());
+            //Debug.Log("Added Player " + temp.getPlayer());
         }
         
     }
@@ -193,6 +197,7 @@ public class CharacterSelection : MonoBehaviour
             if (CurrentPlayers[i] == player)
             {
                 CurrentPlayers[i].setGameCharacter(characterAvatars[player.Iterator].getCharacterPrefab());
+                CurrentPlayers[i].setPlayerName(characterAvatars[player.Iterator].getAvatarName());
                 player.setLockedStatus(true);
                 characterAvatars[player.Iterator].lockStatus = true;
                 var b = characterAvatars[player.Iterator].GetComponent<SpriteRenderer>().color;
@@ -231,6 +236,7 @@ public class CharacterSelection : MonoBehaviour
         if (CurrentPlayers.Count >= 2 && readyToStart)
         {
             GameControl.instance.SetPlayerList(CurrentPlayers);
+            GameControl.instance.resetPlayersLeftInGame();
             SceneManager.LoadScene(1);
         }
         else

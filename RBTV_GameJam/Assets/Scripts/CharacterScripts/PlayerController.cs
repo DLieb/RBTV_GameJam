@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour {
     public GameObject visual;
 	public GameObject deathEffect;
     public GameObject nussAnzeige;
+    public string playerName ="";
+
 
     public bool hasPeanut = false;
     public string currentPlayerPrefix = "Joy1";
@@ -41,7 +43,7 @@ public class PlayerController : MonoBehaviour {
         {
             Vector2 directionVector = (GetComponent<PlayerController2D>().Direction.Equals(Direction.left) ? Vector2.left : Vector2.right);
             directionVector.y = throwAngle;
-            GetComponent<PeanutSpawnScript>().throwPeanut(transform.position.x + directionVector.x * GetComponent<PeanutSpawnScript>().nutSpawnDistanceX, transform.position.y + GetComponent<PeanutSpawnScript>().nutSpawnDistanceY, directionVector * GetComponent<PeanutSpawnScript>().throwForce, null);
+            GetComponent<PeanutSpawnScript>().throwPeanut(transform.position.x + directionVector.x * GetComponent<PeanutSpawnScript>().nutSpawnDistanceX, transform.position.y + GetComponent<PeanutSpawnScript>().nutSpawnDistanceY, directionVector * GetComponent<PeanutSpawnScript>().throwForce, null,playerName);
             //print(directionVector * throwForce);
 
             hasPeanut = false;
@@ -54,36 +56,47 @@ public class PlayerController : MonoBehaviour {
 	    if (hasPeanut && !nussAnzeige.activeSelf && !hasPowerUp)
 	    {
 	        nussAnzeige.SetActive(true);
-	        Debug.Log("Nuss On");
+	       // Debug.Log("Nuss On");
 	    }
 	    else if(!hasPeanut && nussAnzeige.activeSelf || hasPowerUp)
 	    {
             nussAnzeige.SetActive(false);
-            Debug.Log("Nuss Off");
+            //Debug.Log("Nuss Off");
         }
     }
     
-    public void reduceLife()
+    public bool reduceLife( string playerThatThrow)
     {
-        lifes = lifes - 1;
-		if (hitSounds.Length>0 && !speaker.isPlaying) 
-		{
-			speaker.PlayOneShot(hitSounds[Random.Range(0,hitSounds.Length)]);	
-		}
-        if (lifes == 0)
+        if (playerThatThrow != playerName)
         {
-            GameControl.instance.reducePlayerCount();
-			if (deathSound) 
-			{
-				Camera.main.GetComponent<AudioSource>().PlayOneShot (deathSound);	
-			}
-			if (deathEffect) 
-			{
-				Instantiate(deathEffect, transform.position, Quaternion.identity);
-			}
-            Destroy(gameObject);  
+            lifes = lifes - 1;
+            if (hitSounds.Length > 0 && !speaker.isPlaying)
+            {
+                speaker.PlayOneShot(hitSounds[Random.Range(0, hitSounds.Length)]);
+            }
+            GameControl.instance.addScore(playerThatThrow, ScoreEnum.hits);
+            if (lifes == 0)
+            {
+                GameControl.instance.reducePlayerCount();
+                if (deathSound)
+                {
+                    Camera.main.GetComponent<AudioSource>().PlayOneShot(deathSound);
+                }
+                if (deathEffect)
+                {
+                    Instantiate(deathEffect, transform.position, Quaternion.identity);
+                }
+                GameControl.instance.reducePlayersLeftInGame(playerName);
+                GameControl.instance.addScore(playerThatThrow, ScoreEnum.kills);
+                Destroy(gameObject);
+            }
+            StartCoroutine(LetPlayerBlink());
+            return true;
         }
-        StartCoroutine(LetPlayerBlink());
+        else
+        {
+            return false;
+        }
     }
 
     IEnumerator LetPlayerBlink()
